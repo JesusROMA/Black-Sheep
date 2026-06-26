@@ -1,0 +1,127 @@
+<svg viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5C842"></stop>
+      <stop offset="50%" style="stop-color:#D4A017"></stop>
+      <stop offset="100%" style="stop-color:#A07810"></stop>
+    </linearGradient>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A0A0A"></stop>
+      <stop offset="100%" style="stop-color:#111100"></stop>
+    </linearGradient>
+    <radialGradient id="center-glow" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" style="stop-color:rgba(212,160,23,0.11)"></stop>
+      <stop offset="100%" style="stop-color:rgba(0,0,0,0)"></stop>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="5" result="blur"></feGaussianBlur>
+      <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+    </filter>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="10" result="blur"></feGaussianBlur>
+      <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+    </filter>
+  </defs>
+
+  
+  <rect width="1080" height="1080" fill="url(#bg)"></rect>
+  <rect width="1080" height="1080" fill="url(#center-glow)"></rect>
+
+  
+  <rect x="28" y="28" width="1024" height="1024" rx="4" fill="none" stroke="url(#g)" stroke-width="1.5" opacity="0.25"></rect>
+  <rect x="40" y="40" width="1000" height="1000" rx="2" fill="none" stroke="url(#g)" stroke-width="0.6" opacity="0.1"></rect>
+
+  
+  <line x1="28" y1="28" x2="90" y2="28" stroke="url(#g)" stroke-width="2.5" opacity="0.7"></line>
+  <line x1="28" y1="28" x2="28" y2="90" stroke="url(#g)" stroke-width="2.5" opacity="0.7"></line>
+  <line x1="1052" y1="28" x2="990" y2="28" stroke="url(#g)" stroke-width="2.5" opacity="0.7"></line>
+  <line x1="1052" y1="28" x2="1052" y2="90" stroke="url(#g)" stroke-width="2.5" opacity="0.7"></line>
+  <line x1="28" y1="1052" x2="90" y2="1052" stroke="url(#g)" stroke-width="2.5" opacity="0.7"></line>
+  <line x1="28" y1="1052" x2="28" y2="990" stroke="url(#g)" stroke-width="2.5" opacity="0.7"></line>
+  <line x1="1052" y1="1052" x2="990" y2="1052" stroke="url(#g)" stroke-width="2.5" opacity="0.7"></line>
+  <line x1="1052" y1="1052" x2="1052" y2="990" stroke="url(#g)" stroke-width="2.5" opacity="0.7"></line>
+
+  
+  <line x1="540" y1="28" x2="540" y2="1052" stroke="#D4A017" stroke-width="0.5" opacity="0.05"></line>
+  <line x1="28" y1="540" x2="1052" y2="540" stroke="#D4A017" stroke-width="0.5" opacity="0.05"></line>
+
+  
+  
+  <text x="68" y="110" font-family="&#39;Inter&#39;,&#39;Arial Black&#39;,sans-serif" font-weight="900" font-size="28" letter-spacing="4" fill="url(#g)">BLACKSHEEP</text>
+  <text x="68" y="134" font-family="&#39;Inter&#39;,Arial,sans-serif" font-size="11" letter-spacing="5" fill="#555">INTELLIGENT AUTOMATION</text>
+
+  
+  <text x="1012" y="110" font-family="&#39;Inter&#39;,Arial,sans-serif" font-size="16" letter-spacing="2" fill="#444" text-anchor="end">@blacksheep.ai</text>
+
+  
+  <line x1="68" y1="152" x2="1012" y2="152" stroke="url(#g)" stroke-width="1" opacity="0.2"></line>
+
+  
+  
+  <circle cx="430" cy="440" r="110" fill="#111" stroke="url(#g)" stroke-width="3"></circle>
+  <circle cx="510" cy="408" r="98" fill="#111" stroke="url(#g)" stroke-width="3"></circle>
+  <circle cx="472" cy="348" r="90" fill="#111" stroke="url(#g)" stroke-width="3"></circle>
+  <circle cx="390" cy="368" r="84" fill="#111" stroke="url(#g)" stroke-width="3"></circle>
+  <ellipse cx="450" cy="400" rx="120" ry="98" fill="#0d0d0d"></ellipse>
+  
+  <ellipse cx="576" cy="320" rx="66" ry="62" fill="#111" stroke="url(#g)" stroke-width="3"></ellipse>
+  
+  <ellipse cx="536" cy="265" rx="22" ry="36" fill="#0f0f0f" stroke="url(#g)" stroke-width="2.5" transform="rotate(-20,536,265)"></ellipse>
+  
+  <circle cx="598" cy="306" r="13" fill="url(#g)" filter="url(#glow)"></circle>
+  <circle cx="598" cy="306" r="6" fill="#0A0A0A"></circle>
+  <circle cx="598" cy="306" r="2.5" fill="url(#g)"></circle>
+  
+  <path d="M 542,252 A 80,80 0 0,1 652,320" fill="none" stroke="url(#g)" stroke-width="3" stroke-dasharray="8,7" opacity="0.75" filter="url(#glow)"></path>
+  <circle cx="652" cy="320" r="10" fill="url(#g)" filter="url(#glow2)"></circle>
+  <path d="M 548,240 A 94,94 0 0,1 668,320" fill="none" stroke="url(#g)" stroke-width="1" stroke-dasharray="4,10" opacity="0.25"></path>
+  
+  <rect x="376" y="530" width="24" height="70" rx="12" fill="url(#g)" opacity="0.75"></rect>
+  <rect x="412" y="542" width="24" height="60" rx="12" fill="url(#g)" opacity="0.75"></rect>
+  <rect x="464" y="530" width="24" height="70" rx="12" fill="url(#g)" opacity="0.75"></rect>
+  <rect x="500" y="542" width="24" height="60" rx="12" fill="url(#g)" opacity="0.75"></rect>
+  
+  <circle cx="398" cy="393" r="10" fill="url(#g)" filter="url(#glow)"></circle>
+  <circle cx="452" cy="370" r="10" fill="url(#g)" filter="url(#glow)"></circle>
+  <circle cx="506" cy="406" r="10" fill="url(#g)" filter="url(#glow)"></circle>
+  <circle cx="430" cy="438" r="10" fill="url(#g)" filter="url(#glow)"></circle>
+  <line x1="398" y1="393" x2="452" y2="370" stroke="url(#g)" stroke-width="2" opacity="0.5"></line>
+  <line x1="452" y1="370" x2="506" y2="406" stroke="url(#g)" stroke-width="2" opacity="0.5"></line>
+  <line x1="398" y1="393" x2="430" y2="438" stroke="url(#g)" stroke-width="2" opacity="0.5"></line>
+  <line x1="506" y1="406" x2="430" y2="438" stroke="url(#g)" stroke-width="2" opacity="0.5"></line>
+
+  
+  
+  <rect x="720" y="290" width="250" height="34" rx="17" fill="rgba(212,160,23,0.12)" stroke="url(#g)" stroke-width="1.2"></rect>
+  <text x="845" y="312" font-family="&#39;Inter&#39;,Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="3" fill="#D4A017" text-anchor="middle">✦  AUTOMATIZACIÓN IA</text>
+
+  
+  <text x="720" y="372" font-family="&#39;Inter&#39;,&#39;Arial Black&#39;,sans-serif" font-weight="900" font-size="54" fill="#F0F0F0">¿Tu negocio</text>
+  <text x="720" y="432" font-family="&#39;Inter&#39;,&#39;Arial Black&#39;,sans-serif" font-weight="900" font-size="54" fill="#F0F0F0">responde</text>
+  <text x="720" y="492" font-family="&#39;Inter&#39;,&#39;Arial Black&#39;,sans-serif" font-weight="900" font-size="54" fill="url(#g)">24/7?</text>
+
+  
+  <text x="720" y="534" font-family="&#39;Inter&#39;,Arial,sans-serif" font-size="18" fill="#555">El tuyo debería.</text>
+
+  
+  <line x1="720" y1="558" x2="970" y2="558" stroke="url(#g)" stroke-width="1.5" opacity="0.3"></line>
+
+  
+  <text x="720" y="600" font-family="&#39;Inter&#39;,&#39;Arial Black&#39;,sans-serif" font-weight="900" font-size="42" fill="url(#g)">+85%</text>
+  <text x="720" y="628" font-family="&#39;Inter&#39;,Arial,sans-serif" font-size="15" fill="#555" letter-spacing="1">tasa de respuesta con IA</text>
+
+  
+  <line x1="68" y1="900" x2="1012" y2="900" stroke="url(#g)" stroke-width="1" opacity="0.2"></line>
+
+  
+  <rect x="68" y="924" width="280" height="52" rx="26" fill="url(#g)"></rect>
+  <text x="208" y="956" font-family="&#39;Inter&#39;,Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="2" fill="#0A0A0A" text-anchor="middle">AGENDA TU DEMO →</text>
+
+  
+  <text x="1012" y="936" font-family="&#39;Inter&#39;,Arial,sans-serif" font-size="13" fill="#444" text-anchor="end">#AutomatizaciónIA</text>
+  <text x="1012" y="956" font-family="&#39;Inter&#39;,Arial,sans-serif" font-size="13" fill="#444" text-anchor="end">#BlacksheepAI</text>
+  <text x="1012" y="976" font-family="&#39;Inter&#39;,Arial,sans-serif" font-size="13" fill="#444" text-anchor="end">#WhatsAppBusiness</text>
+
+  
+  <text x="540" y="1010" font-family="&#39;Inter&#39;,Arial,sans-serif" font-size="15" letter-spacing="4" fill="#333" text-anchor="middle">black-shep.net</text>
+</svg>

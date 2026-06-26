@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLACKSHEEP — Brand Identity Manual</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#D4A017;--gold-light:#F5C842;--gold-dark:#A07810;--bg:#0A0A0A;--bg2:#111;--bg3:#181818;--text:#F0F0F0;--text2:#A0A0A0;--text3:#555;--border:#222}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.page{max-width:960px;margin:0 auto;padding:2rem}
+
+/* COVER */
+.cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-bottom:1px solid var(--border);padding:4rem 2rem;background:radial-gradient(ellipse 70% 50% at 50% 30%,rgba(212,160,23,0.07),transparent)}
+.cover-badge{font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(212,160,23,0.3);padding:0.3rem 1rem;border-radius:2rem;margin-bottom:2rem}
+.cover h1{font-size:4rem;font-weight:900;letter-spacing:0.1em;color:var(--gold)}
+.cover h1 span{color:var(--text)}
+.cover p{color:var(--text2);font-size:1rem;margin-top:0.75rem;letter-spacing:0.05em}
+.cover-meta{margin-top:3rem;font-size:0.75rem;color:var(--text3);letter-spacing:0.1em}
+
+/* SECTIONS */
+.section{padding:5rem 0;border-bottom:1px solid var(--border)}
+.sec-num{font-size:0.7rem;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.5rem}
+.sec-title{font-size:2rem;font-weight:800;margin-bottom:0.5rem}
+.sec-sub{color:var(--text2);font-size:0.9rem;margin-bottom:3rem;max-width:520px}
+.divider-line{height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:3rem;width:60px}
+
+/* LOGO VERSIONS */
+.logo-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.logo-card{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.logo-card-label{padding:0.6rem 1rem;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text2);border-top:1px solid var(--border);background:var(--bg2)}
+.logo-preview{display:flex;align-items:center;justify-content:center;padding:2.5rem}
+.logo-preview.dark{background:#0A0A0A}
+.logo-preview.light{background:#F5F5F5}
+.logo-preview.gold{background:linear-gradient(135deg,#1a1100,#0a0800)}
+
+/* ICON VERSIONS */
+.icon-row{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem}
+.icon-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;flex:1;min-width:140px}
+.icon-preview{display:flex;align-items:center;justify-content:center;padding:2rem}
+.icon-preview.dark{background:#0A0A0A}
+.icon-preview.light{background:#F5F5F5}
+.icon-preview.gold-bg{background:var(--gold)}
+
+/* COLORS */
+.color-palette{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem}
+.color-swatch{border-radius:8px;overflow:hidden;border:1px solid var(--border)}
+.swatch-color{height:80px}
+.swatch-info{padding:0.75rem 1rem;background:var(--bg2)}
+.swatch-name{font-size:0.8rem;font-weight:700;margin-bottom:0.2rem}
+.swatch-hex{font-size:0.72rem;color:var(--text2);font-family:monospace}
+.swatch-use{font-size:0.68rem;color:var(--text3);margin-top:0.2rem}
+
+/* TYPOGRAPHY */
+.type-sample{margin-bottom:2rem;padding:1.5rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px}
+.type-label{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text3);margin-bottom:0.75rem}
+.type-meta{font-size:0.72rem;color:var(--text2);margin-top:0.5rem}
+
+/* SOCIAL */
+.social-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
+.social-card{border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.social-header{padding:1rem 1.25rem;display:flex;align-items:center;gap:0.75rem;border-bottom:1px solid var(--border)}
+.social-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:900;flex-shrink:0}
+.social-platform{font-size:0.8rem;font-weight:700;letter-spacing:0.05em}
+.social-handle{font-size:0.75rem;color:var(--gold);font-family:monospace}
+.social-preview{position:relative;overflow:hidden}
+/* LinkedIn card */
+.li-cover{height:80px;background:linear-gradient(135deg,#0A0A0A 0%,#1a1100 100%);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border)}
+.li-avatar{width:60px;height:60px;border-radius:50%;background:#0A0A0A;border:3px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:-30px auto 0;position:relative;z-index:1}
+.li-info{padding:2rem 1.25rem 1.25rem;text-align:center}
+.li-name{font-size:0.95rem;font-weight:800;color:var(--gold);letter-spacing:0.05em}
+.li-tagline{font-size:0.75rem;color:var(--text2);margin-top:0.2rem}
+.li-url{font-size:0.72rem;color:var(--text3);margin-top:0.5rem;font-family:monospace}
+/* Instagram card */
+.ig-cover{height:110px;background:linear-gradient(135deg,#0A0A0A,#1a0a00);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.ig-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;height:100px}
+.ig-cell{background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.ig-cell:nth-child(odd){background:#0f0f0f}
+.ig-info{padding:1rem 1.25rem}
+.ig-handle{font-size:0.85rem;font-weight:800;letter-spacing:0.03em}
+.ig-bio{font-size:0.72rem;color:var(--text2);margin-top:0.3rem;line-height:1.5}
+/* TikTok card */
+.tt-cover{height:100px;background:linear-gradient(180deg,#0A0A0A,#050505);display:flex;align-items:center;justify-content:center;position:relative}
+.tt-avatar{width:56px;height:56px;border-radius:50%;background:#0A0A0A;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center}
+.tt-info{padding:1rem 1.25rem}
+.tt-handle{font-size:0.85rem;font-weight:800;letter-spacing:0.03em}
+.tt-bio{font-size:0.72rem;color:var(--text2);margin-top:0.3rem;line-height:1.5}
+
+/* USAGE RULES */
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.rule-card{padding:1.5rem;border-radius:8px;border:1px solid var(--border);background:var(--bg2)}
+.rule-card.do{border-left:3px solid #4CAF50}
+.rule-card.dont{border-left:3px solid #EF5350}
+.rule-label{font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem}
+.rule-label.do{color:#4CAF50}
+.rule-label.dont{color:#EF5350}
+.rule-item{font-size:0.82rem;color:var(--text2);padding:0.3rem 0;display:flex;gap:0.5rem}
+.rule-item::before{content:'✓';color:#4CAF50;font-weight:700;flex-shrink:0}
+.rule-item.x::before{content:'✗';color:#EF5350}
+
+/* SPACING */
+.mt1{margin-top:1rem}.mt2{margin-top:2rem}.mt3{margin-top:3rem}
+.tag-pill{display:inline-block;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;background:rgba(212,160,23,0.1);border:1px solid rgba(212,160,23,0.25);color:var(--gold);padding:0.2rem 0.6rem;border-radius:2rem;margin-right:0.3rem}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-badge">Brand Identity Manual</div>
+  <h1>BLACK<span>SHEEP</span></h1>
+  <p>Intelligent Automation · black-shep.net</p>
+  <div style="width:60px;height:1px;background:var(--gold);margin:2rem auto;opacity:0.5"></div>
+  <p style="font-size:0.82rem;color:var(--text2);max-width:380px">Guía oficial de identidad visual corporativa para uso interno, agencias y proveedores.</p>
+  <div class="cover-meta">Versión 1.0 · 2025 · Uso exclusivo BLACKSHEEP</div>
+</div>
+
+<!-- SECCION 1: LOGOS -->
+<div class="section">
+  <div class="sec-num">01 — Logo</div>
+  <h2 class="sec-title">Versiones del Logotipo</h2>
+  <p class="sec-sub">El logotipo principal combina el ícono de la oveja negra con nodos de circuito y el wordmark en tipografía bold. Existen 4 versiones oficiales.</p>
+  <div class="divider-line"></div>
+
+  <div class="logo-grid">
+    <!-- Version 1: Principal Oscuro -->
+    <div class="logo-card">
+      <div class="logo-preview dark">
+        <svg viewBox="0 0 420 160" width="360" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#F5C842"/><stop offset="100%" style="stop-color:#A07810"/></linearGradient>
+          </defs>
+          <circle cx="68" cy="76" r="18" fill="#111" stroke="url(#g1)" stroke-width="1.5"/>
+          <circle cx="82" cy="70" r="16" fill="#111" stroke="url(#g1)" stroke-width="1.5"/>
+          <circle cx="76" cy="60" r="14" fill="#111" stroke="url(#g1)" stroke-width="1.5"/>
+          <circle cx="62" cy="63" r="13" fill="#111" stroke="url(#g1)" stroke-width="1.5"/>
+          <ellipse cx="72" cy="71" rx="20" ry="16" fill="#0a0a0a"/>
+          <ellipse cx="96" cy="58" rx="10" ry="9" fill="#111" stroke="url(#g1)" stroke-width="1.5"/>
+          <circle cx="100" cy="55" r="1.8" fill="url(#g1)"/><circle cx="100" cy="55" r="0.7" fill="#0a0a0a"/>
+          <ellipse cx="88" cy="49" rx="3.5" ry="6" fill="#0f0f0f" stroke="url(#g1)" stroke-width="1.2" transform="rotate(-20,88,49)"/>
+          <rect x="62" y="87" width="4" height="11" rx="2" fill="url(#g1)" opacity="0.7"/>
+          <rect x="69" y="88" width="4" height="10" rx="2" fill="url(#g1)" opacity="0.7"/>
+          <rect x="77" y="87" width="4" height="11" rx="2" fill="url(#g1)" opacity="0.7"/>
+          <rect x="84" y="88" width="4" height="10" rx="2" fill="url(#g1)" opacity="0.7"/>
+          <circle cx="65" cy="69" r="1.5" fill="url(#g1)" opacity="0.9"/>
+          <circle cx="74" cy="65" r="1.5" fill="url(#g1)" opacity="0.9"/>
+          <circle cx="82" cy="73" r="1.5" fill="url(#g1)" opacity="0.9"/>
+          <circle cx="71" cy="77" r="1.5" fill="url(#g1)" opacity="0.9"/>
+          <line x1="65" y1="69" x2="74" y2="65" stroke="url(#g1)" stroke-width="0.6" opacity="0.5"/>
+          <line x1="74" y1="65" x2="82" y2="73" stroke="url(#g1)" stroke-width="0.6" opacity="0.5"/>
+          <line x1="65" y1="69" x2="71" y2="77" stroke="url(#g1)" stroke-width="0.6" opacity="0.5"/>
+          <line x1="82" y1="73" x2="71" y2="77" stroke="url(#g1)" stroke-width="0.6" opacity="0.5"/>
+          <path d="M 85,46 A 14,14 0 0,1 108,58" fill="none" stroke="url(#g1)" stroke-width="1" stroke-dasharray="2,2" opacity="0.6"/>
+          <circle cx="108" cy="58" r="2" fill="url(#g1)"/>
+          <text x="122" y="82" font-family="'Inter','Arial Black',sans-serif" font-weight="900" font-size="38" letter-spacing="4" fill="url(#g1)">BLACK</text>
+          <text x="122" y="112" font-family="'Inter','Arial Black',sans-serif" font-weight="900" font-size="38" letter-spacing="4" fill="#F0F0F0">SHEEP</text>
+          <rect x="122" y="88" width="270" height="1" fill="url(#g1)" opacity="0.4"/>
+          <text x="124" y="128" font-family="'Inter',Arial,sans-serif" font-size="8" letter-spacing="4" fill="#666">INTELLIGENT AUTOMATION</text>
+        </svg>
+      </div>
+      <div class="logo-card-label">Principal — Fondo oscuro</div>
+    </div>
+
+    <!-- Version 2: Fondo Claro -->
+    <div class="logo-card">
+      <div class="logo-preview light">
+        <svg viewBox="0 0 420 160" width="360" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#A07810"/><stop offset="100%" style="stop-color:#6B5010"/></linearGradient>
+          </defs>
+          <circle cx="68" cy="76" r="18" fill="#ddd" stroke="url(#g2)" stroke-width="1.5"/>
+          <circle cx="82" cy="70" r="16" fill="#ddd" stroke="url(#g2)" stroke-width="1.5"/>
+          <circle cx="76" cy="60" r="14" fill="#ddd" stroke="url(#g2)" stroke-width="1.5"/>
+          <circle cx="62" cy="63" r="13" fill="#ddd" stroke="url(#g2)" stroke-width="1.5"/>
+          <ellipse cx="72" cy="71" rx="20" ry="16" fill="#e8e8e8"/>
+          <ellipse cx="96" cy="58" rx="10" ry="9" fill="#ddd" stroke="url(#g2)" stroke-width="1.5"/>
+          <circle cx="100" cy="55" r="1.8" fill="url(#g2)"/>
+          <ellipse cx="88" cy="49" rx="3.5" ry="6" fill="#e0e0e0" stroke="url(#g2)" stroke-width="1.2" transform="rotate(-20,88,49)"/>
+          <rect x="62" y="87" width="4" height="11" rx="2" fill="url(#g2)" opacity="0.8"/>
+          <rect x="69" y="88" width="4" height="10" rx="2" fill="url(#g2)" opacity="0.8"/>
+          <rect x="77" y="87" width="4" height="11" rx="2" fill="url(#g2)" opacity="0.8"/>
+          <rect x="84" y="88" width="4" height="10" rx="2" fill="url(#g2)" opacity="0.8"/>
+          <circle cx="65" cy="69" r="1.5" fill="url(#g2)"/>
+          <circle cx="74" cy="65" r="1.5" fill="url(#g2)"/>
+          <circle cx="82" cy="73" r="1.5" fill="url(#g2)"/>
+          <circle cx="71" cy="77" r="1.5" fill="url(#g2)"/>
+          <line x1="65" y1="69" x2="74" y2="65" stroke="#A07810" stroke-width="0.6" opacity="0.4"/>
+          <line x1="74" y1="65" x2="82" y2="73" stroke="#A07810" stroke-width="0.6" opacity="0.4"/>
+          <line x1="82" y1="73" x2="71" y2="77" stroke="#A07810" stroke-width="0.6" opacity="0.4"/>
+          <path d="M 85,46 A 14,14 0 0,1 108,58" fill="none" stroke="url(#g2)" stroke-width="1" stroke-dasharray="2,2" opacity="0.7"/>
+          <circle cx="108" cy="58" r="2" fill="url(#g2)"/>
+          <text x="122" y="82" font-family="'Inter','Arial Black',sans-serif" font-weight="900" font-size="38" letter-spacing="4" fill="url(#g2)">BLACK</text>
+          <text x="122" y="112" font-family="'Inter','Arial Black',sans-serif" font-weight="900" font-size="38" letter-spacing="4" fill="#111">SHEEP</text>
+          <rect x="122" y="88" width="270" height="1" fill="url(#g2)" opacity="0.4"/>
+          <text x="124" y="128" font-family="'Inter',Arial,sans-serif" font-size="8" letter-spacing="4" fill="#999">INTELLIGENT AUTOMATION</text>
+        </svg>
+      </div>
+      <div class="logo-card-label">Versión clara — Fondo blanco/gris</div>
+    </div>
+
+    <!-- Version 3: Solo Wordmark -->
+    <div class="logo-card">
+      <div class="logo-preview dark">
+        <svg viewBox="0 0 360 80" width="300" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#F5C842"/><stop offset="100%" style="stop-color:#A07810"/></linearGradient></defs>
+          <text x="0" y="42" font-family="'Inter','Arial Black',sans-serif" font-weight="900" font-size="36" letter-spacing="5" fill="url(#g3)">BLACK</text>
+          <text x="0" y="68" font-family="'Inter','Arial Black',sans-serif" font-weight="900" font-size="36" letter-spacing="5" fill="#F0F0F0">SHEEP</text>
+          <rect x="0" y="47" width="330" height="1" fill="url(#g3)" opacity="0.35"/>
+        </svg>
+      </div>
+      <div class="logo-card-label">Wordmark — Sin ícono</div>
+    </div>
+
+    <!-- Version 4: Gold on Black -->
+    <div class="logo-card">
+      <div class="logo-preview gold">
+        <svg viewBox="0 0 420 160" width="360" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#F5C842"/><stop offset="100%" style="stop-color:#D4A017"/></linearGradient></defs>
+          <circle cx="68" cy="76" r="18" fill="none" stroke="url(#g4)" stroke-width="1.8"/>
+          <circle cx="82" cy="70" r="16" fill="none" stroke="url(#g4)" stroke-width="1.8"/>
+          <circle cx="76" cy="60" r="14" fill="none" stroke="url(#g4)" stroke-width="1.8"/>
+          <circle cx="62" cy="63" r="13" fill="none" stroke="url(#g4)" stroke-width="1.8"/>
+          <ellipse cx="96" cy="58" rx="10" ry="9" fill="none" stroke="url(#g4)" stroke-width="1.8"/>
+          <circle cx="100" cy="55" r="2" fill="url(#g4)"/>
+          <ellipse cx="88" cy="49" rx="3.5" ry="6" fill="none" stroke="url(#g4)" stroke-width="1.2" transform="rotate(-20,88,49)"/>
+          <rect x="62" y="87" width="4" height="11" rx="2" fill="url(#g4)"/>
+          <rect x="69" y="88" width="4" height="10" rx="2" fill="url(#g4)"/>
+          <rect x="77" y="87" width="4" height="11" rx="2" fill="url(#g4)"/>
+          <rect x="84" y="88" width="4" height="10" rx="2" fill="url(#g4)"/>
+          <circle cx="65" cy="69" r="1.5" fill="url(#g4)"/>
+          <circle cx="74" cy="65" r="1.5" fill="url(#g4)"/>
+          <circle cx="82" cy="73" r="1.5" fill="url(#g4)"/>
+          <circle cx="71" cy="77" r="1.5" fill="url(#g4)"/>
+          <line x1="65" y1="69" x2="74" y2="65" stroke="url(#g4)" stroke-width="0.7" opacity="0.6"/>
+          <line x1="74" y1="65" x2="82" y2="73" stroke="url(#g4)" stroke-width="0.7" opacity="0.6"/>
+          <line x1="82" y1="73" x2="71" y2="77" stroke="url(#g4)" stroke-width="0.7" opacity="0.6"/>
+          <path d="M 85,46 A 14,14 0 0,1 108,58" fill="none" stroke="url(#g4)" stroke-width="1" stroke-dasharray="2,2" opacity="0.7"/>
+          <circle cx="108" cy="58" r="2" fill="url(#g4)"/>
+          <text x="122" y="82" font-family="'Inter','Arial Black',sans-serif" font-weight="900" font-size="38" letter-spacing="4" fill="url(#g4)">BLACK</text>
+          <text x="122" y="112" font-family="'Inter','Arial Black',sans-serif" font-weight="900" font-size="38" letter-spacing="4" fill="url(#g4)">SHEEP</text>
+          <rect x="122" y="88" width="270" height="1" fill="url(#g4)" opacity="0.4"/>
+          <text x="124" y="128" font-family="'Inter',Arial,sans-serif" font-size="8" letter-spacing="4" fill="#D4A017" opacity="0.7">INTELLIGENT AUTOMATION</text>
+        </svg>
+      </div>
+      <div class="logo-card-label">Versión oro monocromática — Premium</div>
+    </div>
+  </div>
+
+  <!-- ICONOS -->
+  <h3 style="font-size:1.1rem;font-weight:700;margin:3rem 0 1rem">Ícono solo — Para favicon, avatar y app icon</h3>
+  <div class="icon-row">
+    <div class="icon-card">
+      <div class="icon-preview dark">
+        <svg viewBox="0 0 100 100" width="80" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="ig1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#F5C842"/><stop offset="100%" style="stop-color:#A07810"/></linearGradient></defs>
+          <rect width="100" height="100" fill="#0A0A0A" rx="20"/>
+          <circle cx="42" cy="56" r="16" fill="#111" stroke="url(#ig1)" stroke-width="2"/>
+          <circle cx="54" cy="50" r="14" fill="#111" stroke="url(#ig1)" stroke-width="2"/>
+          <circle cx="48" cy="40" r="12" fill="#111" stroke="url(#ig1)" stroke-width="2"/>
+          <circle cx="36" cy="43" r="11" fill="#111" stroke="url(#ig1)" stroke-width="2"/>
+          <ellipse cx="46" cy="50" rx="16" ry="12" fill="#0a0a0a"/>
+          <ellipse cx="63" cy="37" rx="9" ry="8" fill="#111" stroke="url(#ig1)" stroke-width="1.8"/>
+          <circle cx="67" cy="34" r="2" fill="url(#ig1)"/><circle cx="67" cy="34" r="0.8" fill="#0a0a0a"/>
+          <ellipse cx="56" cy="29" rx="3" ry="5" fill="#0f0f0f" stroke="url(#ig1)" stroke-width="1.2" transform="rotate(-20,56,29)"/>
+          <rect x="36" y="70" width="4" height="10" rx="2" fill="url(#ig1)" opacity="0.8"/>
+          <rect x="44" y="71" width="4" height="9" rx="2" fill="url(#ig1)" opacity="0.8"/>
+          <rect x="52" y="70" width="4" height="10" rx="2" fill="url(#ig1)" opacity="0.8"/>
+          <rect x="60" y="71" width="4" height="9" rx="2" fill="url(#ig1)" opacity="0.8"/>
+          <circle cx="38" cy="49" r="1.5" fill="url(#ig1)"/>
+          <circle cx="47" cy="45" r="1.5" fill="url(#ig1)"/>
+          <circle cx="55" cy="53" r="1.5" fill="url(#ig1)"/>
+          <circle cx="44" cy="57" r="1.5" fill="url(#ig1)"/>
+          <line x1="38" y1="49" x2="47" y2="45" stroke="url(#ig1)" stroke-width="0.7" opacity="0.5"/>
+          <line x1="47" y1="45" x2="55" y2="53" stroke="url(#ig1)" stroke-width="0.7" opacity="0.5"/>
+          <line x1="55" y1="53" x2="44" y2="57" stroke="url(#ig1)" stroke-width="0.7" opacity="0.5"/>
+          <path d="M 55,27 A 12,12 0 0,1 76,38" fill="none" stroke="url(#ig1)" stroke-width="1" stroke-dasharray="2,2" opacity="0.6"/>
+          <circle cx="76" cy="38" r="2" fill="url(#ig1)"/>
+        </svg>
+      </div>
+      <div class="logo-card-label">Dark — 1:1</div>
+    </div>
+    <div class="icon-card">
+      <div class="icon-preview light">
+        <svg viewBox="0 0 100 100" width="80" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="ig2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#A07810"/><stop offset="100%" style="stop-color:#6B5010"/></linearGradient></defs>
+          <rect width="100" height="100" fill="#F5F5F5" rx="20"/>
+          <circle cx="42" cy="56" r="16" fill="#ddd" stroke="url(#ig2)" stroke-width="2"/>
+          <circle cx="54" cy="50" r="14" fill="#ddd" stroke="url(#ig2)" stroke-width="2"/>
+          <circle cx="48" cy="40" r="12" fill="#ddd" stroke="url(#ig2)" stroke-width="2"/>
+          <circle cx="36" cy="43" r="11" fill="#ddd" stroke="url(#ig2)" stroke-width="2"/>
+          <ellipse cx="46" cy="50" rx="16" ry="12" fill="#e8e8e8"/>
+          <ellipse cx="63" cy="37" rx="9" ry="8" fill="#ddd" stroke="url(#ig2)" stroke-width="1.8"/>
+          <circle cx="67" cy="34" r="2" fill="url(#ig2)"/>
+          <rect x="36" y="70" width="4" height="10" rx="2" fill="url(#ig2)" opacity="0.9"/>
+          <rect x="44" y="71" width="4" height="9" rx="2" fill="url(#ig2)" opacity="0.9"/>
+          <rect x="52" y="70" width="4" height="10" rx="2" fill="url(#ig2)" opacity="0.9"/>
+          <rect x="60" y="71" width="4" height="9" rx="2" fill="url(#ig2)" opacity="0.9"/>
+          <circle cx="38" cy="49" r="1.5" fill="url(#ig2)"/>
+          <circle cx="47" cy="45" r="1.5" fill="url(#ig2)"/>
+          <circle cx="55" cy="53" r="1.5" fill="url(#ig2)"/>
+          <line x1="38" y1="49" x2="47" y2="45" stroke="#A07810" stroke-width="0.7" opacity="0.4"/>
+          <line x1="47" y1="45" x2="55" y2="53" stroke="#A07810" stroke-width="0.7" opacity="0.4"/>
+          <path d="M 55,27 A 12,12 0 0,1 76,38" fill="none" stroke="url(#ig2)" stroke-width="1" stroke-dasharray="2,2" opacity="0.6"/>
+          <circle cx="76" cy="38" r="2" fill="url(#ig2)"/>
+        </svg>
+      </div>
+      <div class="logo-card-label">Light — 1:1</div>
+    </div>
+    <div class="icon-card">
+      <div class="icon-preview gold-bg">
+        <svg viewBox="0 0 100 100" width="80" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" fill="#D4A017" rx="20"/>
+          <circle cx="42" cy="56" r="16" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+          <circle cx="54" cy="50" r="14" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+          <circle cx="48" cy="40" r="12" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+          <circle cx="36" cy="43" r="11" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+          <ellipse cx="63" cy="37" rx="9" ry="8" fill="none" stroke="#0A0A0A" stroke-width="1.8"/>
+          <circle cx="67" cy="34" r="2" fill="#0A0A0A"/>
+          <rect x="36" y="70" width="4" height="10" rx="2" fill="#0A0A0A" opacity="0.8"/>
+          <rect x="44" y="71" width="4" height="9" rx="2" fill="#0A0A0A" opacity="0.8"/>
+          <rect x="52" y="70" width="4" height="10" rx="2" fill="#0A0A0A" opacity="0.8"/>
+          <rect x="60" y="71" width="4" height="9" rx="2" fill="#0A0A0A" opacity="0.8"/>
+          <circle cx="38" cy="49" r="1.5" fill="#0A0A0A"/>
+          <circle cx="47" cy="45" r="1.5" fill="#0A0A0A"/>
+          <circle cx="55" cy="53" r="1.5" fill="#0A0A0A"/>
+          <line x1="38" y1="49" x2="47" y2="45" stroke="#0A0A0A" stroke-width="0.8" opacity="0.5"/>
+          <line x1="47" y1="45" x2="55" y2="53" stroke="#0A0A0A" stroke-width="0.8" opacity="0.5"/>
+          <path d="M 55,27 A 12,12 0 0,1 76,38" fill="none" stroke="#0A0A0A" stroke-width="1" stroke-dasharray="2,2" opacity="0.6"/>
+          <circle cx="76" cy="38" r="2" fill="#0A0A0A"/>
+        </svg>
+      </div>
+      <div class="logo-card-label">Gold BG — Destacado</div>
+    </div>
+    <div class="icon-card">
+      <div class="icon-preview dark" style="background:#0A0A0A;border:1px solid #333">
+        <svg viewBox="0 0 100 100" width="80" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="ig4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#F5C842"/><stop offset="100%" style="stop-color:#A07810"/></linearGradient></defs>
+          <polygon points="50,8 86,28 86,72 50,92 14,72 14,28" fill="none" stroke="url(#ig4)" stroke-width="1.5" opacity="0.3"/>
+          <circle cx="42" cy="56" r="16" fill="#111" stroke="url(#ig4)" stroke-width="1.8"/>
+          <circle cx="54" cy="50" r="14" fill="#111" stroke="url(#ig4)" stroke-width="1.8"/>
+          <circle cx="48" cy="40" r="12" fill="#111" stroke="url(#ig4)" stroke-width="1.8"/>
+          <circle cx="36" cy="43" r="11" fill="#111" stroke="url(#ig4)" stroke-width="1.8"/>
+          <ellipse cx="46" cy="50" rx="16" ry="12" fill="#0a0a0a"/>
+          <ellipse cx="63" cy="37" rx="9" ry="8" fill="#111" stroke="url(#ig4)" stroke-width="1.8"/>
+          <circle cx="67" cy="34" r="2" fill="url(#ig4)"/><circle cx="67" cy="34" r="0.8" fill="#0a0a0a"/>
+          <rect x="36" y="70" width="4" height="10" rx="2" fill="url(#ig4)" opacity="0.8"/>
+          <rect x="44" y="71" width="4" height="9" rx="2" fill="url(#ig4)" opacity="0.8"/>
+          <rect x="52" y="70" width="4" height="10" rx="2" fill="url(#ig4)" opacity="0.8"/>
+          <rect x="60" y="71" width="4" height="9" rx="2" fill="url(#ig4)" opacity="0.8"/>
+          <circle cx="38" cy="49" r="1.5" fill="url(#ig4)"/>
+          <circle cx="47" cy="45" r="1.5" fill="url(#ig4)"/>
+          <circle cx="55" cy="53" r="1.5" fill="url(#ig4)"/>
+          <line x1="38" y1="49" x2="47" y2="45" stroke="url(#ig4)" stroke-width="0.7" opacity="0.5"/>
+          <line x1="47" y1="45" x2="55" y2="53" stroke="url(#ig4)" stroke-width="0.7" opacity="0.5"/>
+          <path d="M 55,27 A 12,12 0 0,1 76,38" fill="none" stroke="url(#ig4)" stroke-width="1" stroke-dasharray="2,2" opacity="0.6"/>
+          <circle cx="76" cy="38" r="2" fill="url(#ig4)"/>
+        </svg>
+      </div>
+      <div class="logo-card-label">Hexágono — Versión tech</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECCION 2: COLORES -->
+<div class="section">
+  <div class="sec-num">02 — Colores</div>
+  <h2 class="sec-title">Paleta de Color Corporativa</h2>
+  <p class="sec-sub">La paleta está compuesta por negros profundos como base y dorados como acento principal. Jamás usar colores fuera de esta guía sin aprobación.</p>
+  <div class="divider-line"></div>
+  <div class="color-palette">
+    <div class="color-swatch">
+      <div class="swatch-color" style="background:#F5C842"></div>
+      <div class="swatch-info"><div class="swatch-name">Gold Light</div><div class="swatch-hex">#F5C842</div><div class="swatch-use">Highlights, hover</div></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-color" style="background:#D4A017"></div>
+      <div class="swatch-info"><div class="swatch-name">Gold Primary</div><div class="swatch-hex">#D4A017</div><div class="swatch-use">Color principal de marca</div></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-color" style="background:#A07810"></div>
+      <div class="swatch-info"><div class="swatch-name">Gold Dark</div><div class="swatch-hex">#A07810</div><div class="swatch-use">Sombras, degradados</div></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-color" style="background:#F0F0F0"></div>
+      <div class="swatch-info"><div class="swatch-name">White Text</div><div class="swatch-hex">#F0F0F0</div><div class="swatch-use">Texto principal</div></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-color" style="background:#A0A0A0"></div>
+      <div class="swatch-info"><div class="swatch-name">Gray Text</div><div class="swatch-hex">#A0A0A0</div><div class="swatch-use">Texto secundario</div></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-color" style="background:#181818;border:1px solid #333"></div>
+      <div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#181818</div><div class="swatch-use">Tarjetas, contenedores</div></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-color" style="background:#111111;border:1px solid #333"></div>
+      <div class="swatch-info"><div class="swatch-name">Background 2</div><div class="swatch-hex">#111111</div><div class="swatch-use">Secciones alternas</div></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-color" style="background:#0A0A0A;border:1px solid #333"></div>
+      <div class="swatch-info"><div class="swatch-name">Background</div><div class="swatch-hex">#0A0A0A</div><div class="swatch-use">Fondo principal</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECCION 3: TIPOGRAFÍA -->
+<div class="section">
+  <div class="sec-num">03 — Tipografía</div>
+  <h2 class="sec-title">Sistema Tipográfico</h2>
+  <p class="sec-sub">Inter es la tipografía oficial de BLACKSHEEP. Su claridad y versatilidad la hacen ideal para contextos digitales y tecnológicos.</p>
+  <div class="divider-line"></div>
+
+  <div class="type-sample">
+    <div class="type-label">Display / Headline — Inter Black 900</div>
+    <div style="font-size:2.8rem;font-weight:900;letter-spacing:-0.02em;line-height:1.05">Automatización<br><span style="color:var(--gold)">Inteligente</span></div>
+    <div class="type-meta">Inter 900 · Tracking -0.02em · Solo para H1 y display</div>
+  </div>
+
+  <div class="type-sample">
+    <div class="type-label">Heading — Inter Bold 700-800</div>
+    <div style="font-size:1.8rem;font-weight:800;line-height:1.2">Transforma tu operación comercial<br>con IA aplicada</div>
+    <div class="type-meta">Inter 800 · H2, H3 · Tamaño mínimo 1.4rem</div>
+  </div>
+
+  <div class="type-sample">
+    <div class="type-label">Body — Inter Regular 400</div>
+    <div style="font-size:1rem;color:var(--text2);line-height:1.7;max-width:520px">Automatizamos tu servicio al cliente, agenda de citas y prospectación con Inteligencia Artificial. Más conversiones, menos fricción, sin intervención humana las 24 horas del día.</div>
+    <div class="type-meta">Inter 400 · 1rem / 1.05rem · Color #A0A0A0 en fondo oscuro</div>
+  </div>
+
+  <div class="type-sample">
+    <div class="type-label">Label / Badge — Inter SemiBold 600 · Uppercase</div>
+    <div style="font-size:0.75rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold)">Intelligent Automation · AI Services</div>
+    <div class="type-meta">Inter 600 · 0.7–0.85rem · Letter-spacing 0.15–0.25em · Siempre uppercase</div>
+  </div>
+</div>
+
+<!-- SECCION 4: REDES SOCIALES -->
+<div class="section">
+  <div class="sec-num">04 — Redes Sociales</div>
+  <h2 class="sec-title">Presencia en Redes Sociales</h2>
+  <p class="sec-sub">Nombres de cuenta unificados y coherentes en todas las plataformas para máxima recognoscibilidad de marca.</p>
+  <div class="divider-line"></div>
+
+  <div class="social-grid">
+    <!-- LINKEDIN -->
+    <div class="social-card">
+      <div class="social-header">
+        <div class="social-icon" style="background:#0A66C2;color:#fff;font-size:0.9rem">in</div>
+        <div>
+          <div class="social-platform">LinkedIn</div>
+          <div class="social-handle">linkedin.com/company/blacksheep-ai</div>
+        </div>
+      </div>
+      <div class="social-preview">
+        <div class="li-cover">
+          <svg viewBox="0 0 300 60" width="240" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="lgg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#F5C842"/><stop offset="100%" style="stop-color:#A07810"/></linearGradient></defs>
+            <text x="10" y="38" font-family="'Inter','Arial Black',sans-serif" font-weight="900" font-size="28" letter-spacing="3" fill="url(#lgg)">BLACKSHEEP</text>
+            <text x="10" y="54" font-family="'Inter',Arial,sans-serif" font-size="8" letter-spacing="4" fill="#666">INTELLIGENT AUTOMATION</text>
+          </svg>
+        </div>
+        <div class="li-avatar">
+          <svg viewBox="0 0 60 60" width="44" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="lgi" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#F5C842"/><stop offset="100%" style="stop-color:#A07810"/></linearGradient></defs>
+            <circle cx="26" cy="34" r="10" fill="#111" stroke="url(#lgi)" stroke-width="1.5"/>
+            <circle cx="34" cy="30" r="9" fill="#111" stroke="url(#lgi)" stroke-width="1.5"/>
+            <circle cx="30" cy="22" r="8" fill="#111" stroke="url(#lgi)" stroke-width="1.5"/>
+            <circle cx="22" cy="25" r="7" fill="#111" stroke="url(#lgi)" stroke-width="1.5"/>
+            <ellipse cx="39" cy="19" rx="6" ry="5.5" fill="#111" stroke="url(#lgi)" stroke-width="1.5"/>
+            <circle cx="42" cy="17" r="1.5" fill="url(#lgi)"/>
+            <rect x="22" y="42" width="3" height="8" rx="1.5" fill="url(#lgi)" opacity="0.8"/>
+            <rect x="27" y="43" width="3" height="7" rx="1.5" fill="url(#lgi)" opacity="0.8"/>
+            <rect x="32" y="42" width="3" height="8" rx="1.5" fill="url(#lgi)" opacity="0.8"/>
+            <rect x="37" y="43" width="3" height="7" rx="1.5" fill="url(#lgi)" opacity="0.8"/>
+            <circle cx="25" cy="29" r="1.2" fill="url(#lgi)"/>
+            <circle cx="30" cy="26" r="1.2" fill="url(#lgi)"/>
+            <circle cx="35" cy="32" r="1.2" fill="url(#lgi)"/>
+            <line x1="25" y1="29" x2="30" y2="26" stroke="url(#lgi)" stroke-width="0.6" opacity="0.5"/>
+            <line x1="30" y1="26" x2="35" y2="32" stroke="url(#lgi)" stroke-width="0.6" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="li-info">
+          <div class="li-name">BLACKSHEEP</div>
+          <div class="li-tagline">Automatización con IA · Servicio al cliente · Leads · Citas</div>
+          <div class="li-url">linkedin.com/company/blacksheep-ai</div>
+        </div>
+      </div>
+      <div style="padding:0 1.25rem 1.25rem">
+        <div style="font-size:0.72rem;color:var(--text3);margin-bottom:0.5rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase">Nombre de cuenta</div>
+        <div style="font-size:0.85rem;color:var(--gold);font-family:monospace;background:rgba(212,160,23,0.07);padding:0.5rem 0.75rem;border-radius:4px;border:1px solid rgba(212,160,23,0.15)">BLACKSHEEP — Intelligent Automation</div>
+        <div style="font-size:0.72rem;color:var(--text3);margin-top:0.75rem;line-height:1.6">Empresa · Tecnología de la información · México · <span style="color:var(--gold)">#AutomatizaciónIA #LeadGen #WhatsAppBot</span></div>
+      </div>
+    </div>
+
+    <!-- INSTAGRAM -->
+    <div class="social-card">
+      <div class="social-header">
+        <div class="social-icon" style="background:linear-gradient(135deg,#E1306C,#833AB4,#F77737);color:#fff;font-size:1rem">◉</div>
+        <div>
+          <div class="social-platform">Instagram</div>
+          <div class="social-handle">@blacksheep.ai</div>
+        </div>
+      </div>
+      <div class="social-preview">
+        <div class="ig-cover">
+          <div class="ig-grid" style="width:100%">
+            <div class="ig-cell">🤖</div>
+            <div class="ig-cell" style="background:#0f0f0f">
+              <svg viewBox="0 0 50 50" width="36" xmlns="http://www.w3.org/2000/svg">
+                <defs><linearGradient id="igi" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#F5C842"/><stop offset="100%" style="stop-color:#A07810"/></linearGradient></defs>
+                <circle cx="22" cy="29" r="8" fill="none" stroke="url(#igi)" stroke-width="1.5"/>
+                <circle cx="28" cy="24" r="7" fill="none" stroke="url(#igi)" stroke-width="1.5"/>
+                <circle cx="25" cy="18" r="6" fill="none" stroke="url(#igi)" stroke-width="1.5"/>
+                <ellipse cx="32" cy="14" rx="5" ry="4.5" fill="none" stroke="url(#igi)" stroke-width="1.3"/>
+                <circle cx="34" cy="12" r="1.3" fill="url(#igi)"/>
+                <rect x="19" y="36" width="2.5" height="7" rx="1.2" fill="url(#igi)"/>
+                <rect x="23" y="36" width="2.5" height="7" rx="1.2" fill="url(#igi)"/>
+                <rect x="27" y="36" width="2.5" height="7" rx="1.2" fill="url(#igi)"/>
+                <rect x="31" y="36" width="2.5" height="7" rx="1.2" fill="url(#igi)"/>
+              </svg>
+            </div>
+            <div class="ig-cell">⚡</div>
+            <div class="ig-cell" style="background:#0f0f0f">📈</div>
+            <div class="ig-cell">🗓️</div>
+            <div class="ig-cell" style="background:#0f0f0f">💬</div>
+          </div>
+        </div>
+        <div class="ig-info">
+          <div class="ig-handle">@blacksheep.ai</div>
+          <div class="ig-bio">🐑⚡ Automatización + IA para empresas<br>📲 WhatsApp · Citas · Leads · Atención 24/7<br>🌐 black-shep.net</div>
+        </div>
+      </div>
+      <div style="padding:0 1.25rem 1.25rem">
+        <div style="font-size:0.72rem;color:var(--text3);margin-bottom:0.5rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase">Nombre de cuenta</div>
+        <div style="font-size:0.85rem;color:var(--gold);font-family:monospace;background:rgba(212,160,23,0.07);padding:0.5rem 0.75rem;border-radius:4px;border:1px solid rgba(212,160,23,0.15)">@blacksheep.ai</div>
+        <div style="font-size:0.72rem;color:var(--text3);margin-top:0.75rem;line-height:1.6">Nombre en perfil: <strong style="color:var(--text2)">BLACKSHEEP | IA & Automatización</strong><br><span style="color:var(--gold)">#BlacksheepAI #AutomatizaciónWhatsApp #IAparaEmpresas</span></div>
+      </div>
+    </div>
+
+    <!-- TIKTOK -->
+    <div class="social-card">
+      <div class="social-header">
+        <div class="social-icon" style="background:#010101;color:var(--gold);border:1px solid var(--border);font-size:0.85rem;font-weight:900">TK</div>
+        <div>
+          <div class="social-platform">TikTok</div>
+          <div class="social-handle">@blacksheep.ai</div>
+        </div>
+      </div>
+      <div class="social-preview">
+        <div class="tt-cover">
+          <div style="text-align:center">
+            <div class="tt-avatar">
+              <svg viewBox="0 0 56 56" width="42" xmlns="http://www.w3.org/2000/svg">
+                <defs><linearGradient id="tki" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#F5C842"/><stop offset="100%" style="stop-color:#A07810"/></linearGradient></defs>
+                <circle cx="24" cy="32" r="9" fill="#111" stroke="url(#tki)" stroke-width="1.5"/>
+                <circle cx="32" cy="27" r="8" fill="#111" stroke="url(#tki)" stroke-width="1.5"/>
+                <circle cx="27" cy="19" r="7" fill="#111" stroke="url(#tki)" stroke-width="1.5"/>
+                <ellipse cx="36" cy="15" rx="5.5" ry="5" fill="#111" stroke="url(#tki)" stroke-width="1.5"/>
+                <circle cx="38" cy="13" r="1.5" fill="url(#tki)"/>
+                <rect x="20" y="40" width="3" height="7" rx="1.5" fill="url(#tki)" opacity="0.8"/>
+                <rect x="25" y="41" width="3" height="6" rx="1.5" fill="url(#tki)" opacity="0.8"/>
+                <rect x="30" y="40" width="3" height="7" rx="1.5" fill="url(#tki)" opacity="0.8"/>
+                <circle cx="23" cy="27" r="1.3" fill="url(#tki)"/>
+                <circle cx="29" cy="23" r="1.3" fill="url(#tki)"/>
+                <circle cx="35" cy="30" r="1.3" fill="url(#tki)"/>
+                <line x1="23" y1="27" x2="29" y2="23" stroke="url(#tki)" stroke-width="0.7" opacity="0.5"/>
+                <line x1="29" y1="23" x2="35" y2="30" stroke="url(#tki)" stroke-width="0.7" opacity="0.5"/>
+              </svg>
+            </div>
+            <div style="font-size:0.65rem;color:var(--gold);margin-top:0.4rem;letter-spacing:0.1em;font-weight:700">@blacksheep.ai</div>
+          </div>
+        </div>
+        <div class="tt-info">
+          <div class="tt-handle">@blacksheep.ai</div>
+          <div class="tt-bio">🐑 Te mostramos cómo la IA automatiza tu negocio<br>📲 Demos reales · Casos de éxito · Tips de automatización<br>🌐 black-shep.net</div>
+        </div>
+      </div>
+      <div style="padding:0 1.25rem 1.25rem">
+        <div style="font-size:0.72rem;color:var(--text3);margin-bottom:0.5rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase">Nombre de cuenta</div>
+        <div style="font-size:0.85rem;color:var(--gold);font-family:monospace;background:rgba(212,160,23,0.07);padding:0.5rem 0.75rem;border-radius:4px;border:1px solid rgba(212,160,23,0.15)">@blacksheep.ai</div>
+        <div style="font-size:0.72rem;color:var(--text3);margin-top:0.75rem;line-height:1.6">Nombre en perfil: <strong style="color:var(--text2)">BLACKSHEEP AI 🐑⚡</strong><br><span style="color:var(--gold)">#AutomatizaciónIA #EmpresasLatam #WhatsAppBusiness</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Strategy -->
+  <div class="mt3">
+    <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:1.5rem">Estrategia de Contenido por Plataforma</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem">
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.5rem">
+        <div style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:#0A66C2;margin-bottom:0.75rem;font-weight:700">LinkedIn</div>
+        <div style="font-size:0.82rem;color:var(--text2);line-height:1.7">
+          • Casos de éxito y métricas de clientes<br>
+          • Artículos sobre automatización B2B<br>
+          • Demos en video de productos<br>
+          • Insights de industria (inmobiliaria, cobranza)<br>
+          • <span style="color:var(--gold)">Frecuencia: 3–4 posts/semana</span>
+        </div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.5rem">
+        <div style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;background:linear-gradient(90deg,#E1306C,#833AB4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0.75rem;font-weight:700">Instagram</div>
+        <div style="font-size:0.82rem;color:var(--text2);line-height:1.7">
+          • Carruseles educativos de IA<br>
+          • Antes y después de automatizar<br>
+          • Reels de demos en 60 seg<br>
+          • Stories con tips rápidos<br>
+          • <span style="color:var(--gold)">Frecuencia: 5–6 posts/semana</span>
+        </div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.5rem">
+        <div style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:#fff;margin-bottom:0.75rem;font-weight:700">TikTok</div>
+        <div style="font-size:0.82rem;color:var(--text2);line-height:1.7">
+          • "Así automaticé mi negocio en 24 hrs"<br>
+          • Demos en vivo de bots de WhatsApp<br>
+          • Errores comunes al atender clientes<br>
+          • POV: Tu IA trabajando a las 3am<br>
+          • <span style="color:var(--gold)">Frecuencia: 1 video/día</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECCION 5: REGLAS DE USO -->
+<div class="section">
+  <div class="sec-num">05 — Reglas de Uso</div>
+  <h2 class="sec-title">Uso Correcto de la Marca</h2>
+  <p class="sec-sub">Estas reglas protegen la integridad visual de BLACKSHEEP en todos los puntos de contacto con clientes y prospectos.</p>
+  <div class="divider-line"></div>
+  <div class="rules-grid">
+    <div class="rule-card do">
+      <div class="rule-label do">✓ Permitido</div>
+      <div class="rule-item">Usar el logo sobre fondo negro #0A0A0A</div>
+      <div class="rule-item">Usar la versión dorada sobre negro profundo</div>
+      <div class="rule-item">Escalar el logo proporcionalmente</div>
+      <div class="rule-item">Usar la versión clara sobre fondos blancos o grises</div>
+      <div class="rule-item">Usar el ícono solo en avatar y favicon</div>
+      <div class="rule-item">Tipografía Inter en todas las comunicaciones</div>
+      <div class="rule-item">Zona de respiro mínima: 20px alrededor del logo</div>
+    </div>
+    <div class="rule-card dont">
+      <div class="rule-label dont">✗ Prohibido</div>
+      <div class="rule-item x">Cambiar los colores del logo</div>
+      <div class="rule-item x">Distorsionar o estirar el ícono</div>
+      <div class="rule-item x">Usar sobre fondos de color saturado</div>
+      <div class="rule-item x">Agregar sombras, efectos o filtros no oficiales</div>
+      <div class="rule-item x">Usar tipografías distintas a Inter</div>
+      <div class="rule-item x">Separar el wordmark del ícono en forma horizontal</div>
+      <div class="rule-item x">Usar el logo sobre fotografías sin overlay oscuro</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER DEL MANUAL -->
+<div style="padding:3rem 0;text-align:center;border-top:1px solid var(--border)">
+  <div style="font-size:1.2rem;font-weight:900;letter-spacing:0.15em;color:var(--gold)">BLACKSHEEP</div>
+  <div style="font-size:0.75rem;color:var(--text3);margin-top:0.5rem;letter-spacing:0.1em">Brand Identity Manual v1.0 · 2025 · black-shep.net</div>
+  <div style="font-size:0.72rem;color:var(--text3);margin-top:0.5rem">Documento confidencial de uso interno — Todos los derechos reservados</div>
+</div>
+
+</div><!-- /page -->
+</body>
+</html>

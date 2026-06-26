@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BLACKSHEEP — Automatización de procesos e Inteligencia Artificial para atención al cliente, agenda de citas, prospectación y generación de leads.">
+<meta name="keywords" content="automatización IA, chatbot WhatsApp, agenda automática, generación de leads, prospectación inteligente, cobranza automatizada, inteligencia artificial empresas">
+<meta property="og:title" content="BLACKSHEEP — Automatización con IA">
+<meta property="og:description" content="Convierte cada contacto en una oportunidad real con IA y automatización de procesos.">
+<meta property="og:url" content="https://black-shep.net">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://black-shep.net">
+<title>BLACKSHEEP — Automatización con IA | black-shep.net</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#D4A017;--gold-light:#F5C842;--gold-dark:#A07810;--bg:#0A0A0A;--bg2:#111111;--bg3:#181818;--text:#F0F0F0;--text2:#A0A0A0;--text3:#606060;--border:#222;--border2:#2A2A2A}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 2rem}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;max-width:1100px;margin:0 auto}
+.logo{font-size:1.3rem;font-weight:900;letter-spacing:0.15em;color:var(--gold)}
+.logo span{color:var(--text)}
+.nav-links{display:flex;gap:2rem;font-size:0.85rem;color:var(--text2)}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold);color:#000;padding:0.5rem 1.25rem;border-radius:4px;font-size:0.85rem;font-weight:700;letter-spacing:0.05em;transition:background 0.2s}
+.nav-cta:hover{background:var(--gold-light)}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 5rem;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(212,160,23,0.08) 0%,transparent 70%)}
+.hero-badge{display:inline-block;background:rgba(212,160,23,0.12);border:1px solid rgba(212,160,23,0.3);color:var(--gold);font-size:0.75rem;letter-spacing:0.15em;padding:0.35rem 1rem;border-radius:2rem;margin-bottom:2rem;text-transform:uppercase}
+.hero h1{font-size:clamp(2.8rem,6vw,5rem);font-weight:900;line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.5rem}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:1.15rem;color:var(--text2);max-width:620px;margin:0 auto 2.5rem;line-height:1.7}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:#000;padding:0.85rem 2rem;border-radius:4px;font-weight:700;font-size:0.95rem;letter-spacing:0.03em;transition:all 0.2s;border:2px solid var(--gold);display:inline-block}
+.btn-primary:hover{background:var(--gold-light);border-color:var(--gold-light)}
+.btn-secondary{background:transparent;color:var(--text);padding:0.85rem 2rem;border-radius:4px;font-weight:600;font-size:0.95rem;border:1px solid var(--border2);transition:all 0.2s;display:inline-block}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{display:flex;gap:3rem;justify-content:center;margin-top:4rem;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-size:2.2rem;font-weight:900;color:var(--gold)}
+.stat-label{font-size:0.8rem;color:var(--text2);letter-spacing:0.08em;text-transform:uppercase;margin-top:0.2rem}
+section{padding:6rem 0}
+.section-label{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem}
+.section-title{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;line-height:1.15;margin-bottom:1rem}
+.section-sub{color:var(--text2);font-size:1.05rem;max-width:560px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent)}
+.pillars{background:var(--bg2)}
+.pillars-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3.5rem}
+.pillar-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:2rem;transition:border-color 0.2s,transform 0.2s}
+.pillar-card:hover{border-color:var(--gold-dark);transform:translateY(-3px)}
+.pillar-icon{width:48px;height:48px;background:rgba(212,160,23,0.1);border:1px solid rgba(212,160,23,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:1.4rem}
+.pillar-card h3{font-size:1.1rem;font-weight:700;margin-bottom:0.6rem}
+.pillar-card p{font-size:0.9rem;color:var(--text2);line-height:1.65}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-top:3.5rem}
+.service-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.75rem;position:relative;overflow:hidden;transition:border-color 0.2s}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transition:transform 0.3s;transform-origin:left}
+.service-card:hover::before{transform:scaleX(1)}
+.service-num{font-size:0.75rem;font-weight:700;color:var(--gold);letter-spacing:0.15em;margin-bottom:1rem}
+.service-card h3{font-size:1.05rem;font-weight:700;margin-bottom:0.75rem}
+.service-card p{font-size:0.875rem;color:var(--text2);line-height:1.65}
+.service-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1.25rem}
+.tag{font-size:0.72rem;background:rgba(212,160,23,0.08);color:var(--gold);border:1px solid rgba(212,160,23,0.2);padding:0.2rem 0.6rem;border-radius:2rem}
+.industries{background:var(--bg2)}
+.industries-intro{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3.5rem}
+.industries-text p{color:var(--text2);font-size:0.95rem;line-height:1.75;margin-bottom:1rem}
+.industries-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+.industry-item{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:0.9rem 1.1rem;display:flex;align-items:center;gap:0.75rem;font-size:0.875rem;font-weight:500;transition:border-color 0.2s}
+.industry-item:hover{border-color:var(--gold-dark);color:var(--gold)}
+.ind-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;margin-top:4rem;position:relative}
+.process-steps::before{content:'';position:absolute;top:28px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dark),var(--gold-dark),transparent);z-index:0}
+.step{text-align:center;padding:0 1.5rem;position:relative;z-index:1}
+.step-num{width:56px;height:56px;border-radius:50%;background:var(--bg);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:900;color:var(--gold);margin:0 auto 1.25rem}
+.step h3{font-size:1rem;font-weight:700;margin-bottom:0.5rem}
+.step p{font-size:0.85rem;color:var(--text2);line-height:1.6}
+.testimonials{background:var(--bg2)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3.5rem}
+.testimonial{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1.75rem}
+.quote-mark{font-size:3rem;color:var(--gold);line-height:1;margin-bottom:0.5rem;font-family:Georgia,serif}
+.testimonial p{font-size:0.9rem;color:var(--text2);line-height:1.7;margin-bottom:1.25rem}
+.testimonial-author{display:flex;align-items:center;gap:0.75rem}
+.author-avatar{width:40px;height:40px;border-radius:50%;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.3);display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;color:var(--gold)}
+.author-name{font-size:0.875rem;font-weight:600}
+.author-role{font-size:0.78rem;color:var(--text3)}
+.stars{color:var(--gold);font-size:0.85rem;margin-bottom:0.75rem}
+.cta-final{text-align:center;background:radial-gradient(ellipse 70% 80% at 50% 100%,rgba(212,160,23,0.07) 0%,transparent 70%)}
+.cta-final h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:900;margin-bottom:1rem}
+.cta-final h2 span{color:var(--gold)}
+.cta-final>div>p{color:var(--text2);font-size:1.05rem;margin-bottom:2.5rem;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-form{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.cta-form input{background:var(--bg2);border:1px solid var(--border2);color:var(--text);padding:0.85rem 1.25rem;border-radius:4px;font-size:0.9rem;width:280px;outline:none;transition:border-color 0.2s;font-family:inherit}
+.cta-form input:focus{border-color:var(--gold)}
+.cta-form input::placeholder{color:var(--text3)}
+.cta-note{font-size:0.78rem;color:var(--text3)}
+footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2rem}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+.footer-logo{font-size:1.1rem;font-weight:900;letter-spacing:0.15em;color:var(--gold);margin-bottom:0.75rem}
+.footer-desc{font-size:0.85rem;color:var(--text3);line-height:1.65}
+.footer-col h4{font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text2);margin-bottom:1rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:0.5rem}
+.footer-col ul li a{font-size:0.85rem;color:var(--text3);transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:0.8rem;color:var(--text3);flex-wrap:wrap;gap:1rem}
+.footer-dot{color:var(--gold)}
+@media(max-width:768px){
+  .industries-intro{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .process-steps::before{display:none}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">BLACK<span>SHEEP</span></div>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#industrias">Industrias</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a href="#contacto" class="nav-cta">Agenda Demo &rarr;</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="hero-badge">IA &middot; Automatizaci&oacute;n &middot; Resultados</div>
+    <h1>Convierte cada contacto<br>en una <span>oportunidad real</span></h1>
+    <p>Automatizamos tu servicio al cliente, agenda de citas y prospectaci&oacute;n con Inteligencia Artificial. M&aacute;s conversiones, menos fricci&oacute;n, sin intervenci&oacute;n humana 24/7.</p>
+    <div class="hero-btns">
+      <a href="#contacto" class="btn-primary">Agenda una demo gratuita</a>
+      <a href="#servicios" class="btn-secondary">Ver servicios</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">+85%</div><div class="stat-label">Tasa de respuesta</div></div>
+      <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Disponibilidad</div></div>
+      <div class="stat"><div class="stat-num">3x</div><div class="stat-label">M&aacute;s leads calificados</div></div>
+      <div class="stat"><div class="stat-num">-60%</div><div class="stat-label">Costo operativo</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="pillars" id="pilares">
+  <div class="container">
+    <div class="section-label">Por qu&eacute; BLACKSHEEP</div>
+    <h2 class="section-title">IA que trabaja por ti,<br>mientras t&uacute; cierras negocios</h2>
+    <p class="section-sub">Combinamos automatizaci&oacute;n avanzada con modelos de lenguaje de &uacute;ltima generaci&oacute;n para transformar tu operaci&oacute;n comercial.</p>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">&#129302;</div>
+        <h3>Inteligencia Artificial Aplicada</h3>
+        <p>Agentes conversacionales entrenados en tu negocio. Responden, califican y convierten por WhatsApp, tel&eacute;fono o web sin intervenci&oacute;n humana.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">&#9889;</div>
+        <h3>Automatizaci&oacute;n de Procesos</h3>
+        <p>Eliminamos tareas repetitivas y flujos manuales. Tu equipo se enfoca en cerrar, nosotros automatizamos todo lo dem&aacute;s.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">&#128200;</div>
+        <h3>Resultados Medibles</h3>
+        <p>Dashboard en tiempo real con m&eacute;tricas de conversi&oacute;n, leads generados, citas agendadas y ROI de cada canal automatizado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="servicios">
+  <div class="container">
+    <div class="section-label">Nuestros Servicios</div>
+    <h2 class="section-title">Todo lo que necesitas<br>para automatizar tu crecimiento</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3>Atenci&oacute;n al Cliente con IA</h3>
+        <p>Agentes virtuales que responden dudas, resuelven casos y escalan a humanos solo cuando es necesario. Integraci&oacute;n con WhatsApp, web y llamadas.</p>
+        <div class="service-tags"><span class="tag">WhatsApp</span><span class="tag">Chatbot</span><span class="tag">Voz</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3>Agenda de Citas Automatizada</h3>
+        <p>Tu cliente agenda, reagenda o cancela sin llamar a nadie. Sincronizaci&oacute;n con Google Calendar, recordatorios autom&aacute;ticos y confirmaciones v&iacute;a WhatsApp.</p>
+        <div class="service-tags"><span class="tag">Calendario</span><span class="tag">Recordatorios</span><span class="tag">CRM</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3>Prospectaci&oacute;n Inteligente</h3>
+        <p>Identificamos, contactamos y calificamos prospectos de forma autom&aacute;tica. La IA determina el nivel de inter&eacute;s y prioriza a los m&aacute;s calientes para tu equipo.</p>
+        <div class="service-tags"><span class="tag">Lead scoring</span><span class="tag">Outbound</span><span class="tag">CRM</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <h3>Generaci&oacute;n de Leads</h3>
+        <p>Captura, filtra y nutre leads desde m&uacute;ltiples canales digitales. Funnels automatizados que convierten contactos fr&iacute;os en oportunidades de venta reales.</p>
+        <div class="service-tags"><span class="tag">Funnels</span><span class="tag">Nutrici&oacute;n</span><span class="tag">Meta Ads</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="industries" id="industrias">
+  <div class="container">
+    <div class="section-label">Industrias</div>
+    <h2 class="section-title">Para cualquier empresa que<br>necesite hablar con sus clientes</h2>
+    <div class="industries-intro">
+      <div class="industries-text">
+        <p>Si tu negocio depende de la comunicaci&oacute;n con clientes &mdash;ya sea para agendar citas, dar seguimiento, cobrar, vender o dar soporte&mdash; BLACKSHEEP automatiza ese proceso completo.</p>
+        <p>Nuestra tecnolog&iacute;a se adapta a cualquier industria donde el contacto telef&oacute;nico o por WhatsApp sea parte del ciclo de venta o atenci&oacute;n.</p>
+        <a href="#contacto" class="btn-primary" style="display:inline-block;margin-top:1rem">Habla con un especialista</a>
+      </div>
+      <div class="industries-grid">
+        <div class="industry-item"><span class="ind-dot"></span>Inmobiliarias</div>
+        <div class="industry-item"><span class="ind-dot"></span>Despachos de Cobranza</div>
+        <div class="industry-item"><span class="ind-dot"></span>Cl&iacute;nicas y Salud</div>
+        <div class="industry-item"><span class="ind-dot"></span>Agencias de Seguros</div>
+        <div class="industry-item"><span class="ind-dot"></span>Financieras y Cr&eacute;dito</div>
+        <div class="industry-item"><span class="ind-dot"></span>Automotriz</div>
+        <div class="industry-item"><span class="ind-dot"></span>Educaci&oacute;n y Cursos</div>
+        <div class="industry-item"><span class="ind-dot"></span>Gimnasios y Wellness</div>
+        <div class="industry-item"><span class="ind-dot"></span>Consultor&iacute;a y Legal</div>
+        <div class="industry-item"><span class="ind-dot"></span>Log&iacute;stica y Fletes</div>
+        <div class="industry-item"><span class="ind-dot"></span>Restaurantes y Food</div>
+        <div class="industry-item"><span class="ind-dot"></span>Retail y E-commerce</div>
+        <div class="industry-item"><span class="ind-dot"></span>Servicios de Limpieza</div>
+        <div class="industry-item"><span class="ind-dot"></span>Gobierno y Asociaciones</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="proceso">
+  <div class="container">
+    <div class="section-label">C&oacute;mo Funciona</div>
+    <h2 class="section-title">En 3 pasos tienes tu<br>operaci&oacute;n automatizada</h2>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Diagn&oacute;stico y Dise&ntilde;o</h3>
+        <p>Analizamos tus procesos actuales, cuellos de botella y oportunidades. Dise&ntilde;amos el flujo de automatizaci&oacute;n ideal para tu negocio.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Implementaci&oacute;n Express</h3>
+        <p>Configuramos los agentes de IA, integramos con tus sistemas existentes (CRM, calendario, WhatsApp) y lanzamos en tiempo r&eacute;cord.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Escala y Optimiza</h3>
+        <p>Monitoreo continuo, mejoras con datos reales y escalamiento seg&uacute;n resultados. Siempre con soporte dedicado de nuestro equipo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="testimonials">
+  <div class="container">
+    <div class="section-label">Casos de &Eacute;xito</div>
+    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="quote-mark">&ldquo;</div>
+        <p>Antes perd&iacute;amos prospectos porque no pod&iacute;amos responder a tiempo. Ahora el agente de IA responde en segundos por WhatsApp y agenda la cita autom&aacute;ticamente. Triplicamos nuestras visitas a propiedades.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MR</div>
+          <div><div class="author-name">Miguel Ram&iacute;rez</div><div class="author-role">Director &middot; Grupo Inmobiliario Nova</div></div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="quote-mark">&ldquo;</div>
+        <p>La automatizaci&oacute;n de cobranza nos cambi&oacute; el juego. El sistema contacta a los clientes, negocia plazos y registra acuerdos sin que nuestros asesores intervengan. Recuperamos 40% m&aacute;s cartera.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AL</div>
+          <div><div class="author-name">Andrea L&oacute;pez</div><div class="author-role">Gerente &middot; Cobranza Eficiente MX</div></div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="quote-mark">&ldquo;</div>
+        <p>Nuestra cl&iacute;nica maneja 300 citas semanales. BLACKSHEEP automatiz&oacute; confirmaciones, recordatorios y reagendas. Reducimos el 70% de las inasistencias y liberamos a nuestra recepcionista para atenci&oacute;n presencial.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">CP</div>
+          <div><div class="author-name">Carlos Pedraza</div><div class="author-role">Director M&eacute;dico &middot; Cl&iacute;nica Integral Pedraza</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="cta-final" id="contacto">
+  <div class="container">
+    <div class="section-label">Empieza Hoy</div>
+    <h2>&iquest;Listo para dejar de<br>perder <span>oportunidades</span>?</h2>
+    <p>Agenda una demo gratuita de 30 minutos y te mostramos c&oacute;mo automatizamos tu negocio espec&iacute;fico.</p>
+    <div class="cta-form">
+      <input type="text" placeholder="Tu nombre">
+      <input type="tel" placeholder="WhatsApp o tel&eacute;fono">
+      <a href="https://wa.me/52XXXXXXXXXX?text=Hola%2C%20quiero%20agendar%20una%20demo%20de%20BLACKSHEEP" class="btn-primary">Agendar Demo &rarr;</a>
+    </div>
+    <p class="cta-note">Sin compromisos &middot; Respuesta en menos de 2 horas &middot; 100% gratis</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">BLACKSHEEP</div>
+        <p class="footer-desc">Automatizaci&oacute;n de procesos e Inteligencia Artificial para empresas que quieren crecer sin escalar sus costos operativos.</p>
+        <p style="font-size:0.8rem;color:var(--text3);margin-top:0.75rem">black-shep.net</p>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#servicios">Atenci&oacute;n al Cliente IA</a></li>
+          <li><a href="#servicios">Agenda Autom&aacute;tica</a></li>
+          <li><a href="#servicios">Prospectaci&oacute;n</a></li>
+          <li><a href="#servicios">Generaci&oacute;n de Leads</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Nosotros</a></li>
+          <li><a href="#">Casos de &Eacute;xito</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/52XXXXXXXXXX">WhatsApp</a></li>
+          <li><a href="mailto:hola@black-shep.net">hola@black-shep.net</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 BLACKSHEEP <span class="footer-dot">&middot;</span> black-shep.net</span>
+      <span>Todos los derechos reservados <span class="footer-dot">&middot;</span> M&eacute;xico</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  })
+});
+</script>
+</body>
+</html>

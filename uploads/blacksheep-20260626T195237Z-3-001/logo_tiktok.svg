@@ -1,0 +1,106 @@
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5C842"></stop>
+      <stop offset="50%" style="stop-color:#D4A017"></stop>
+      <stop offset="100%" style="stop-color:#A07810"></stop>
+    </linearGradient>
+    <linearGradient id="tt-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#060606"></stop>
+      <stop offset="100%" style="stop-color:#0d0d0d"></stop>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3.5" result="blur"></feGaussianBlur>
+      <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+    </filter>
+    <filter id="glow-soft">
+      <feGaussianBlur stdDeviation="6" result="blur"></feGaussianBlur>
+      <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+    </filter>
+  </defs>
+
+  
+  <rect width="500" height="500" fill="url(#tt-bg)"></rect>
+
+  
+  <radialGradient id="tt-glow" cx="50%" cy="42%" r="50%">
+    <stop offset="0%" style="stop-color:rgba(212,160,23,0.12)"></stop>
+    <stop offset="100%" style="stop-color:rgba(0,0,0,0)"></stop>
+  </radialGradient>
+  <rect width="500" height="500" fill="url(#tt-glow)"></rect>
+
+  
+  <line x1="0" y1="490" x2="500" y2="490" stroke="url(#g)" stroke-width="3" opacity="0.15"></line>
+  <line x1="0" y1="10" x2="500" y2="10" stroke="url(#g)" stroke-width="3" opacity="0.15"></line>
+
+  
+  <g opacity="0.06">
+    <circle cx="50" cy="50" r="1.5" fill="#D4A017"></circle>
+    <circle cx="150" cy="50" r="1.5" fill="#D4A017"></circle>
+    <circle cx="250" cy="50" r="1.5" fill="#D4A017"></circle>
+    <circle cx="350" cy="50" r="1.5" fill="#D4A017"></circle>
+    <circle cx="450" cy="50" r="1.5" fill="#D4A017"></circle>
+    <circle cx="50" cy="150" r="1.5" fill="#D4A017"></circle>
+    <circle cx="450" cy="150" r="1.5" fill="#D4A017"></circle>
+    <circle cx="50" cy="250" r="1.5" fill="#D4A017"></circle>
+    <circle cx="450" cy="250" r="1.5" fill="#D4A017"></circle>
+    <circle cx="50" cy="350" r="1.5" fill="#D4A017"></circle>
+    <circle cx="450" cy="350" r="1.5" fill="#D4A017"></circle>
+    <circle cx="50" cy="450" r="1.5" fill="#D4A017"></circle>
+    <circle cx="150" cy="450" r="1.5" fill="#D4A017"></circle>
+    <circle cx="250" cy="450" r="1.5" fill="#D4A017"></circle>
+    <circle cx="350" cy="450" r="1.5" fill="#D4A017"></circle>
+    <circle cx="450" cy="450" r="1.5" fill="#D4A017"></circle>
+  </g>
+
+  
+  
+  <circle cx="216" cy="248" r="64" fill="#111" stroke="url(#g)" stroke-width="3"></circle>
+  <circle cx="262" cy="228" r="57" fill="#111" stroke="url(#g)" stroke-width="3"></circle>
+  <circle cx="240" cy="196" r="53" fill="#111" stroke="url(#g)" stroke-width="3"></circle>
+  <circle cx="192" cy="206" r="50" fill="#111" stroke="url(#g)" stroke-width="3"></circle>
+  
+  <ellipse cx="228" cy="226" rx="70" ry="58" fill="#0c0c0c"></ellipse>
+
+  
+  <ellipse cx="294" cy="183" rx="39" ry="37" fill="#111" stroke="url(#g)" stroke-width="3"></ellipse>
+
+  
+  <ellipse cx="270" cy="150" rx="12" ry="21" fill="#0f0f0f" stroke="url(#g)" stroke-width="2.5" transform="rotate(-20,270,150)"></ellipse>
+
+  
+  <circle cx="307" cy="175" r="10" fill="url(#g)" filter="url(#glow)"></circle>
+  <circle cx="307" cy="175" r="5" fill="#0A0A0A"></circle>
+  <circle cx="307" cy="175" r="2" fill="url(#g)"></circle>
+
+  
+  <path d="M 274,144 A 46,46 0 0,1 338,183" fill="none" stroke="url(#g)" stroke-width="2.5" stroke-dasharray="6,5" opacity="0.8" filter="url(#glow)"></path>
+  <circle cx="338" cy="183" r="7" fill="url(#g)" filter="url(#glow-soft)"></circle>
+
+  
+  <path d="M 280,136 A 56,56 0 0,1 350,183" fill="none" stroke="url(#g)" stroke-width="1" stroke-dasharray="3,6" opacity="0.3"></path>
+
+  
+  <rect x="182" y="302" width="15" height="48" rx="7.5" fill="url(#g)" opacity="0.8"></rect>
+  <rect x="204" y="308" width="15" height="42" rx="7.5" fill="url(#g)" opacity="0.8"></rect>
+  <rect x="238" y="302" width="15" height="48" rx="7.5" fill="url(#g)" opacity="0.8"></rect>
+  <rect x="260" y="308" width="15" height="42" rx="7.5" fill="url(#g)" opacity="0.8"></rect>
+
+  
+  <circle cx="200" cy="222" r="7" fill="url(#g)" filter="url(#glow)"></circle>
+  <circle cx="232" cy="208" r="7" fill="url(#g)" filter="url(#glow)"></circle>
+  <circle cx="260" cy="234" r="7" fill="url(#g)" filter="url(#glow)"></circle>
+  <circle cx="220" cy="252" r="7" fill="url(#g)" filter="url(#glow)"></circle>
+
+  
+  <line x1="200" y1="222" x2="232" y2="208" stroke="url(#g)" stroke-width="1.5" opacity="0.55"></line>
+  <line x1="232" y1="208" x2="260" y2="234" stroke="url(#g)" stroke-width="1.5" opacity="0.55"></line>
+  <line x1="200" y1="222" x2="220" y2="252" stroke="url(#g)" stroke-width="1.5" opacity="0.55"></line>
+  <line x1="260" y1="234" x2="220" y2="252" stroke="url(#g)" stroke-width="1.5" opacity="0.55"></line>
+
+  
+  <text x="250" y="398" font-family="&#39;Inter&#39;,&#39;Arial Black&#39;,sans-serif" font-weight="900" font-size="40" letter-spacing="5" fill="url(#g)" text-anchor="middle">BLACK</text>
+  <text x="250" y="440" font-family="&#39;Inter&#39;,&#39;Arial Black&#39;,sans-serif" font-weight="900" font-size="40" letter-spacing="5" fill="#F0F0F0" text-anchor="middle">SHEEP</text>
+  <rect x="100" y="447" width="300" height="1.5" fill="url(#g)" opacity="0.2"></rect>
+  <text x="250" y="466" font-family="&#39;Inter&#39;,Arial,sans-serif" font-weight="500" font-size="10" letter-spacing="5" fill="#555" text-anchor="middle">AI · AUTOMATION</text>
+</svg>

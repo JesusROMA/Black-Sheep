@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#0A0A0A}
+::selection{background:#D4A017;color:#0A0A0A}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:#222;border-radius:6px}
+::-webkit-scrollbar-track{background:#0A0A0A}
+:focus-visible{outline:2px solid #F5C842;outline-offset:3px;border-radius:4px}
+.bs-svgpop{transform-box:fill-box;transform-origin:center}
+@keyframes drawHex{from{stroke-dashoffset:480}to{stroke-dashoffset:0}}
+@keyframes popIn{0%{opacity:0;transform:scale(.5)}60%{transform:scale(1.12)}100%{opacity:1;transform:scale(1)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes glowPop{0%{opacity:0;transform:scale(0)}60%{transform:scale(1.4)}100%{opacity:1;transform:scale(1)}}
+@keyframes drawOrbit{from{opacity:.6;stroke-dashoffset:130}to{opacity:1;stroke-dashoffset:0}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes drawCircuit{from{opacity:0;stroke-dashoffset:90}to{opacity:.55;stroke-dashoffset:0}}
+@keyframes pulseGlow{0%,100%{filter:drop-shadow(0 0 4px rgba(212,160,23,.45))}50%{filter:drop-shadow(0 0 14px rgba(212,160,23,.95))}}
+@keyframes scan{0%{top:-4%;opacity:0}12%{opacity:1}88%{opacity:.55}100%{top:104%;opacity:0}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes blink{0%,42%,100%{opacity:.25}21%{opacity:1}}
+.bs-reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.bs-reveal.bs-in{opacity:1;transform:none}
+.bs-link{position:relative;color:#A0A0A0;text-decoration:none;font-size:14.5px;font-weight:500;letter-spacing:.01em;transition:color .2s}
+.bs-link:hover{color:#F0F0F0}
+.bs-link::after{content:"";position:absolute;left:0;bottom:-7px;height:2px;width:0;background:linear-gradient(90deg,#F5C842,#A07810);transition:width .26s}
+.bs-link:hover::after{width:100%}
+.bs-card{transition:border-color .25s,box-shadow .25s,transform .25s}
+.bs-card:hover{border-color:rgba(212,160,23,.5)!important;box-shadow:0 0 0 1px rgba(212,160,23,.18),0 18px 50px rgba(212,160,23,.10);transform:translateY(-4px)}
+.bs-btn-gold{transition:transform .16s,box-shadow .2s}
+.bs-btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(212,160,23,.34)}
+.bs-btn-ghost{transition:border-color .2s,color .2s,background .2s}
+.bs-btn-ghost:hover{border-color:rgba(212,160,23,.55);color:#F5C842;background:rgba(212,160,23,.06)}
+@media (max-width:900px){.bs-hide-m{display:none!important}.bs-hero{grid-template-columns:1fr!important}.bs-2col{grid-template-columns:1fr!important}.bs-g4{grid-template-columns:repeat(2,1fr)!important}.bs-steps{grid-template-columns:1fr!important}.bs-why{grid-template-columns:1fr!important}}
+@media (max-width:560px){.bs-g4{grid-template-columns:1fr!important}.bs-stats{grid-template-columns:repeat(2,1fr)!important}}
+.bs-nomotion *{animation:none!important}
+.bs-nomotion .bs-reveal{opacity:1!important;transform:none!important;transition:none!important}
+.bs-nomotion .scanline{display:none!important}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.bs-reveal{opacity:1!important;transform:none!important}.scanline{display:none!important}}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="background:#0A0A0A;color:#F0F0F0;font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased">
+
+<!-- ===================== NAV ===================== -->
+<nav data-nav style="position:sticky;top:0;z-index:80;background:rgba(10,10,10,0.55);backdrop-filter:blur(12px);border-bottom:1px solid rgba(34,34,34,0);transition:background .3s,border-color .3s">
+  <div style="max-width:1180px;margin:0 auto;padding:0 28px;height:70px;display:flex;align-items:center;justify-content:space-between">
+    <a href="#top" aria-label="BLACKSHEEP inicio" style="display:flex;align-items:center;gap:12px;text-decoration:none">
+      <svg viewBox="0 0 100 100" width="34" height="34" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="navg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F5C842"/><stop offset="100%" stop-color="#A07810"/></linearGradient></defs>
+        <circle cx="42" cy="56" r="16" fill="#111" stroke="url(#navg)" stroke-width="2"/>
+        <circle cx="54" cy="50" r="14" fill="#111" stroke="url(#navg)" stroke-width="2"/>
+        <circle cx="48" cy="40" r="12" fill="#111" stroke="url(#navg)" stroke-width="2"/>
+        <circle cx="36" cy="43" r="11" fill="#111" stroke="url(#navg)" stroke-width="2"/>
+        <ellipse cx="46" cy="50" rx="16" ry="12" fill="#0a0a0a"/>
+        <ellipse cx="63" cy="37" rx="9" ry="8" fill="#111" stroke="url(#navg)" stroke-width="1.8"/>
+        <circle cx="67" cy="34" r="2" fill="url(#navg)"/>
+        <ellipse cx="56" cy="29" rx="3" ry="5" fill="#0f0f0f" stroke="url(#navg)" stroke-width="1.2" transform="rotate(-20,56,29)"/>
+        <rect x="36" y="70" width="4" height="10" rx="2" fill="url(#navg)" opacity="0.8"/>
+        <rect x="44" y="71" width="4" height="9" rx="2" fill="url(#navg)" opacity="0.8"/>
+        <rect x="52" y="70" width="4" height="10" rx="2" fill="url(#navg)" opacity="0.8"/>
+        <rect x="60" y="71" width="4" height="9" rx="2" fill="url(#navg)" opacity="0.8"/>
+        <path d="M 55,27 A 12,12 0 0,1 76,38" fill="none" stroke="url(#navg)" stroke-width="1" stroke-dasharray="2,2" opacity="0.6"/>
+        <circle cx="76" cy="38" r="2" fill="url(#navg)"/>
+      </svg>
+      <span style="font-weight:900;font-size:19px;letter-spacing:.06em"><span style="background:linear-gradient(135deg,#F5C842,#A07810);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">BLACK</span><span style="color:#F0F0F0">SHEEP</span></span>
+    </a>
+    <div class="bs-hide-m" style="display:flex;align-items:center;gap:34px">
+      <a href="#servicios" class="bs-link">Servicios</a>
+      <a href="#como" class="bs-link">Cómo funciona</a>
+      <a href="#industrias" class="bs-link">Industrias</a>
+      <a href="#porque" class="bs-link">Por qué nosotros</a>
+      <a href="#contacto" class="bs-btn-gold" style="text-decoration:none;background:linear-gradient(135deg,#F5C842,#A07810);color:#0A0A0A;font-weight:700;font-size:14px;padding:10px 18px;border-radius:9px">Agenda una demo</a>
+    </div>
+    <button data-burger aria-label="Abrir menú" class="bs-hide-d" style="display:none;background:transparent;border:1px solid #222;border-radius:9px;width:42px;height:42px;cursor:pointer;flex-direction:column;gap:5px;align-items:center;justify-content:center">
+      <span style="width:18px;height:2px;background:#F0F0F0;border-radius:2px"></span>
+      <span style="width:18px;height:2px;background:#F0F0F0;border-radius:2px"></span>
+      <span style="width:18px;height:2px;background:#F0F0F0;border-radius:2px"></span>
+    </button>
+  </div>
+  <!-- mobile menu -->
+  <div data-mobile style="display:none;border-top:1px solid #222;background:rgba(10,10,10,0.96);padding:14px 28px 20px;flex-direction:column;gap:4px">
+    <a href="#servicios" class="bs-mlink" style="color:#F0F0F0;text-decoration:none;font-weight:600;padding:12px 0;border-bottom:1px solid #1a1a1a">Servicios</a>
+    <a href="#como" class="bs-mlink" style="color:#F0F0F0;text-decoration:none;font-weight:600;padding:12px 0;border-bottom:1px solid #1a1a1a">Cómo funciona</a>
+    <a href="#industrias" class="bs-mlink" style="color:#F0F0F0;text-decoration:none;font-weight:600;padding:12px 0;border-bottom:1px solid #1a1a1a">Industrias</a>
+    <a href="#porque" class="bs-mlink" style="color:#F0F0F0;text-decoration:none;font-weight:600;padding:12px 0;border-bottom:1px solid #1a1a1a">Por qué nosotros</a>
+    <a href="#contacto" class="bs-mlink" style="text-decoration:none;text-align:center;background:linear-gradient(135deg,#F5C842,#A07810);color:#0A0A0A;font-weight:700;padding:13px;border-radius:9px;margin-top:12px">Agenda una demo</a>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section id="top" style="position:relative;overflow:hidden">
+  <!-- background grid + glow -->
+  <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(rgba(212,160,23,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(212,160,23,0.045) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 70% at 60% 35%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 80% 70% at 60% 35%,#000 30%,transparent 75%)"></div>
+  <div aria-hidden="true" style="position:absolute;top:-120px;right:-60px;width:760px;height:560px;background:radial-gradient(ellipse at center,rgba(212,160,23,0.16),transparent 62%);pointer-events:none"></div>
+  <div class="scanline" aria-hidden="true" style="position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(212,160,23,0.55),transparent);animation:scan 6.5s ease-in-out infinite;animation-delay:1.6s;pointer-events:none;z-index:2"></div>
+
+  <div class="bs-hero" style="position:relative;z-index:3;max-width:1180px;margin:0 auto;padding:78px 28px 84px;display:grid;grid-template-columns:1.04fr 0.96fr;gap:56px;align-items:center">
+    <!-- left -->
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:10px;font-size:11.5px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#D4A017;border:1px solid rgba(212,160,23,0.3);padding:7px 14px;border-radius:999px;margin-bottom:28px;animation:fadeIn .8s ease backwards;animation-delay:.1s">
+        <span style="width:6px;height:6px;border-radius:50%;background:#D4A017;box-shadow:0 0 8px #D4A017"></span>Intelligent Automation · IA aplicada
+      </div>
+      <h1 style="font-weight:900;font-size:clamp(40px,5.6vw,68px);line-height:1.02;letter-spacing:-0.02em;margin:0 0 24px;animation:fadeIn .8s ease backwards;animation-delay:.2s">Automatización <span style="background:linear-gradient(135deg,#F5C842,#A07810);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Inteligente</span> para tu negocio</h1>
+      <p style="font-size:18.5px;line-height:1.6;color:#A0A0A0;max-width:32em;margin:0 0 34px;animation:fadeIn .8s ease backwards;animation-delay:.32s">Agentes de IA que atienden a tus clientes, agendan citas y dan seguimiento a tus prospectos por WhatsApp — 24/7, sin filas de espera y sin contratar más personal.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;animation:fadeIn .8s ease backwards;animation-delay:.44s">
+        <a href="#contacto" class="bs-btn-gold" style="text-decoration:none;background:linear-gradient(135deg,#F5C842,#A07810);color:#0A0A0A;font-weight:700;font-size:16px;padding:15px 26px;border-radius:11px;box-shadow:0 10px 28px rgba(212,160,23,0.26)">Agenda una demo</a>
+        <a href="#como" class="bs-btn-ghost" style="text-decoration:none;border:1px solid #2a2a2a;color:#F0F0F0;font-weight:600;font-size:16px;padding:15px 24px;border-radius:11px">Ver cómo funciona</a>
+      </div>
+      <!-- metrics -->
+      <div style="display:flex;gap:34px;flex-wrap:wrap;margin-top:48px;animation:fadeIn .8s ease backwards;animation-delay:.56s">
+        <div>
+          <div style="font-weight:900;font-size:30px;letter-spacing:-0.02em;background:linear-gradient(135deg,#F5C842,#A07810);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">24/7</div>
+          <div style="font-size:13px;color:#A0A0A0;margin-top:3px">Disponible siempre</div>
+        </div>
+        <div style="width:1px;background:#222"></div>
+        <div>
+          <div style="font-weight:900;font-size:30px;letter-spacing:-0.02em;background:linear-gradient(135deg,#F5C842,#A07810);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">&lt;30s</div>
+          <div style="font-size:13px;color:#A0A0A0;margin-top:3px">Tiempo de respuesta</div>
+        </div>
+        <div style="width:1px;background:#222"></div>
+        <div>
+          <div style="font-weight:900;font-size:30px;letter-spacing:-0.02em;background:linear-gradient(135deg,#F5C842,#A07810);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">0</div>
+          <div style="font-size:13px;color:#A0A0A0;margin-top:3px">Conversaciones perdidas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- right: animated sheep -->
+    <div style="position:relative;display:flex;align-items:center;justify-content:center;min-height:420px">
+      <div style="position:absolute;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(212,160,23,0.14),transparent 65%)"></div>
+      <svg viewBox="145 50 230 270" width="100%" style="max-width:480px;position:relative;animation:floatY 8s ease-in-out infinite" aria-label="Logo BLACKSHEEP: oveja formada por circuitos" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="hg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F5C842"/><stop offset="50%" stop-color="#D4A017"/><stop offset="100%" stop-color="#A07810"/></linearGradient>
+          <filter id="hglow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <!-- hexagons -->
+        <polygon points="270,60 360,112 360,218 270,270 180,218 180,112" fill="none" stroke="url(#hg)" stroke-width="1.5" opacity="0.25" stroke-dasharray="480" style="animation:drawHex 1s ease backwards;animation-delay:.2s"/>
+        <polygon points="270,80 348,126 348,218 270,264 192,218 192,126" fill="none" stroke="url(#hg)" stroke-width="1" opacity="0.13" stroke-dasharray="480" style="animation:drawHex 1s ease backwards;animation-delay:.4s"/>
+        <!-- wool -->
+        <circle class="bs-svgpop" cx="228" cy="210" r="54" fill="#111" stroke="url(#hg)" stroke-width="2.5" style="animation:popIn .45s cubic-bezier(.34,1.56,.64,1) backwards;animation-delay:.7s"/>
+        <circle class="bs-svgpop" cx="272" cy="190" r="48" fill="#111" stroke="url(#hg)" stroke-width="2.5" style="animation:popIn .45s cubic-bezier(.34,1.56,.64,1) backwards;animation-delay:.8s"/>
+        <circle class="bs-svgpop" cx="250" cy="160" r="44" fill="#111" stroke="url(#hg)" stroke-width="2.5" style="animation:popIn .45s cubic-bezier(.34,1.56,.64,1) backwards;animation-delay:.9s"/>
+        <circle class="bs-svgpop" cx="206" cy="168" r="40" fill="#111" stroke="url(#hg)" stroke-width="2.5" style="animation:popIn .45s cubic-bezier(.34,1.56,.64,1) backwards;animation-delay:.97s"/>
+        <ellipse cx="238" cy="192" rx="60" ry="50" fill="#0d0d0d" style="animation:fadeIn .3s ease backwards;animation-delay:1.05s"/>
+        <!-- head -->
+        <ellipse class="bs-svgpop" cx="310" cy="148" rx="34" ry="32" fill="#111" stroke="url(#hg)" stroke-width="2.5" style="animation:popIn .45s cubic-bezier(.34,1.56,.64,1) backwards;animation-delay:1.1s"/>
+        <ellipse class="bs-svgpop" cx="288" cy="118" rx="11" ry="18" fill="#0f0f0f" stroke="url(#hg)" stroke-width="2" transform="rotate(-20,288,118)" style="animation:popIn .35s ease backwards;animation-delay:1.2s"/>
+        <!-- eye + orbit -->
+        <path d="M 290,108 A 44,44 0 0,1 352,148" fill="none" stroke="url(#hg)" stroke-width="2.5" stroke-dasharray="7,5" filter="url(#hglow)" style="stroke-dasharray:130;animation:drawOrbit .8s ease backwards;animation-delay:1.35s"/>
+        <g filter="url(#hglow)" style="animation:pulseGlow 2.4s ease-in-out infinite;animation-delay:2.4s">
+          <circle class="bs-svgpop" cx="322" cy="141" r="7.5" fill="url(#hg)" style="animation:glowPop .5s ease backwards;animation-delay:1.3s"/>
+          <circle cx="322" cy="141" r="3.5" fill="#0A0A0A"/>
+          <circle cx="322" cy="141" r="1.5" fill="url(#hg)"/>
+        </g>
+        <circle class="bs-svgpop" cx="352" cy="148" r="6" fill="url(#hg)" filter="url(#hglow)" style="animation:glowPop .4s ease backwards;animation-delay:1.95s"/>
+        <!-- legs -->
+        <rect x="194" y="258" width="13" height="40" rx="6.5" fill="url(#hg)" opacity="0.8" style="animation:slideDown .4s ease backwards;animation-delay:1.3s"/>
+        <rect x="214" y="264" width="13" height="35" rx="6.5" fill="url(#hg)" opacity="0.8" style="animation:slideDown .4s ease backwards;animation-delay:1.36s"/>
+        <rect x="244" y="258" width="13" height="40" rx="6.5" fill="url(#hg)" opacity="0.8" style="animation:slideDown .4s ease backwards;animation-delay:1.42s"/>
+        <rect x="264" y="264" width="13" height="35" rx="6.5" fill="url(#hg)" opacity="0.8" style="animation:slideDown .4s ease backwards;animation-delay:1.48s"/>
+        <!-- circuit lines -->
+        <line x1="214" y1="186" x2="244" y2="172" stroke="url(#hg)" stroke-width="1.4" opacity="0.5" stroke-dasharray="90" style="animation:drawCircuit .5s ease backwards;animation-delay:1.85s"/>
+        <line x1="244" y1="172" x2="272" y2="198" stroke="url(#hg)" stroke-width="1.4" opacity="0.5" stroke-dasharray="90" style="animation:drawCircuit .5s ease backwards;animation-delay:1.95s"/>
+        <line x1="214" y1="186" x2="232" y2="212" stroke="url(#hg)" stroke-width="1.4" opacity="0.5" stroke-dasharray="90" style="animation:drawCircuit .5s ease backwards;animation-delay:2.0s"/>
+        <line x1="272" y1="198" x2="232" y2="212" stroke="url(#hg)" stroke-width="1.4" opacity="0.5" stroke-dasharray="90" style="animation:drawCircuit .5s ease backwards;animation-delay:2.05s"/>
+        <!-- nodes -->
+        <circle class="bs-svgpop" cx="214" cy="186" r="6" fill="url(#hg)" filter="url(#hglow)" style="animation:glowPop .35s ease backwards;animation-delay:1.6s"/>
+        <circle class="bs-svgpop" cx="244" cy="172" r="6" fill="url(#hg)" filter="url(#hglow)" style="animation:glowPop .35s ease backwards;animation-delay:1.7s"/>
+        <circle class="bs-svgpop" cx="272" cy="198" r="6" fill="url(#hg)" filter="url(#hglow)" style="animation:glowPop .35s ease backwards;animation-delay:1.78s"/>
+        <circle class="bs-svgpop" cx="232" cy="212" r="6" fill="url(#hg)" filter="url(#hglow)" style="animation:glowPop .35s ease backwards;animation-delay:1.84s"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STATS ===================== -->
+<section style="border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;background:#0c0c0c">
+  <div class="bs-stats bs-reveal" style="max-width:1180px;margin:0 auto;padding:52px 28px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px">
+    <div style="text-align:center">
+      <div style="font-weight:900;font-size:clamp(34px,4vw,50px);letter-spacing:-0.02em;background:linear-gradient(135deg,#F5C842,#A07810);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent"><span data-count="92" data-suf="%">92%</span></div>
+      <div style="font-size:14.5px;color:#A0A0A0;margin-top:8px;line-height:1.4">de mensajes respondidos al instante</div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-weight:900;font-size:clamp(34px,4vw,50px);letter-spacing:-0.02em;background:linear-gradient(135deg,#F5C842,#A07810);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent"><span data-count="3" data-suf="x">3x</span></div>
+      <div style="font-size:14.5px;color:#A0A0A0;margin-top:8px;line-height:1.4">más prospectos contactados</div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-weight:900;font-size:clamp(34px,4vw,50px);letter-spacing:-0.02em;background:linear-gradient(135deg,#F5C842,#A07810);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent"><span data-count="70" data-suf="%">70%</span></div>
+      <div style="font-size:14.5px;color:#A0A0A0;margin-top:8px;line-height:1.4">menos carga operativa</div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-weight:900;font-size:clamp(34px,4vw,50px);letter-spacing:-0.02em;background:linear-gradient(135deg,#F5C842,#A07810);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent"><span data-count="5" data-suf="">5</span></div>
+      <div style="font-size:14.5px;color:#A0A0A0;margin-top:8px;line-height:1.4">días para salir a producción</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVICIOS ===================== -->
+<section id="servicios" style="max-width:1180px;margin:0 auto;padding:104px 28px;scroll-margin-top:80px">
+  <div class="bs-reveal" style="margin-bottom:54px">
+    <div style="font-size:11.5px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#D4A017;margin-bottom:14px">Servicios</div>
+    <h2 style="font-weight:800;font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-0.015em;margin:0 0 14px;max-width:18ch">IA que trabaja como tu mejor empleado — sin descanso.</h2>
+    <p style="font-size:17px;color:#A0A0A0;max-width:52ch;margin:0">Cuatro frentes de automatización, listos para conectarse a tu operación y a tu WhatsApp Business.</p>
+  </div>
+  <div class="bs-g4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+    <div class="bs-card bs-reveal" style="background:#111;border:1px solid #222;border-radius:18px;padding:28px">
+      <div style="width:50px;height:50px;border-radius:13px;background:rgba(212,160,23,0.09);border:1px solid rgba(212,160,23,0.22);display:flex;align-items:center;justify-content:center;margin-bottom:22px">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      </div>
+      <h3 style="font-weight:700;font-size:19px;margin:0 0 9px">Atención al cliente con IA</h3>
+      <p style="font-size:14.5px;color:#A0A0A0;line-height:1.55;margin:0">Responde preguntas frecuentes, resuelve dudas y escala a un humano solo cuando hace falta. Tono natural, en tu marca.</p>
+    </div>
+    <div class="bs-card bs-reveal" style="background:#111;border:1px solid #222;border-radius:18px;padding:28px">
+      <div style="width:50px;height:50px;border-radius:13px;background:rgba(212,160,23,0.09);border:1px solid rgba(212,160,23,0.22);display:flex;align-items:center;justify-content:center;margin-bottom:22px">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg>
+      </div>
+      <h3 style="font-weight:700;font-size:19px;margin:0 0 9px">Agenda de citas automática</h3>
+      <p style="font-size:14.5px;color:#A0A0A0;line-height:1.55;margin:0">Agenda, confirma y reprograma citas en tu calendario. Envía recordatorios y reduce las inasistencias.</p>
+    </div>
+    <div class="bs-card bs-reveal" style="background:#111;border:1px solid #222;border-radius:18px;padding:28px">
+      <div style="width:50px;height:50px;border-radius:13px;background:rgba(212,160,23,0.09);border:1px solid rgba(212,160,23,0.22);display:flex;align-items:center;justify-content:center;margin-bottom:22px">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <h3 style="font-weight:700;font-size:19px;margin:0 0 9px">Prospección y seguimiento</h3>
+      <p style="font-size:14.5px;color:#A0A0A0;line-height:1.55;margin:0">Califica leads, da seguimiento a cada prospecto y nutre la conversación hasta que esté listo para comprar.</p>
+    </div>
+    <div class="bs-card bs-reveal" style="background:#111;border:1px solid #222;border-radius:18px;padding:28px">
+      <div style="width:50px;height:50px;border-radius:13px;background:rgba(212,160,23,0.09);border:1px solid rgba(212,160,23,0.22);display:flex;align-items:center;justify-content:center;margin-bottom:22px">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/><circle cx="8.5" cy="12" r="1" fill="#D4A017"/><circle cx="12" cy="12" r="1" fill="#D4A017"/><circle cx="15.5" cy="12" r="1" fill="#D4A017"/></svg>
+      </div>
+      <h3 style="font-weight:700;font-size:19px;margin:0 0 9px">Integración WhatsApp Business</h3>
+      <p style="font-size:14.5px;color:#A0A0A0;line-height:1.55;margin:0">Todo ocurre en el canal donde ya están tus clientes. Conectamos tu número y tu CRM sin fricción.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CÓMO FUNCIONA ===================== -->
+<section id="como" style="background:#0c0c0c;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;scroll-margin-top:72px">
+  <div style="max-width:1180px;margin:0 auto;padding:104px 28px">
+    <div class="bs-reveal" style="margin-bottom:54px">
+      <div style="font-size:11.5px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#D4A017;margin-bottom:14px">Cómo funciona</div>
+      <h2 style="font-weight:800;font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-0.015em;margin:0;max-width:20ch">De la primera llamada a producción en días, no meses.</h2>
+    </div>
+    <div class="bs-steps" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative">
+      <div class="bs-reveal" style="position:relative;padding:0 22px 0 0">
+        <div style="font-weight:900;font-size:15px;color:#D4A017;font-variant-numeric:tabular-nums;margin-bottom:20px;display:flex;align-items:center;gap:12px">01<span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(212,160,23,0.4),transparent)" class="bs-hide-m"></span></div>
+        <h3 style="font-weight:700;font-size:20px;margin:0 0 10px">Conectamos</h3>
+        <p style="font-size:14.5px;color:#A0A0A0;line-height:1.55;margin:0">Enlazamos tu WhatsApp Business, tu calendario y tu CRM. Sin cambiar tu número ni tus herramientas.</p>
+      </div>
+      <div class="bs-reveal" style="position:relative;padding:0 22px">
+        <div style="font-weight:900;font-size:15px;color:#D4A017;font-variant-numeric:tabular-nums;margin-bottom:20px;display:flex;align-items:center;gap:12px">02<span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(212,160,23,0.4),transparent)" class="bs-hide-m"></span></div>
+        <h3 style="font-weight:700;font-size:20px;margin:0 0 10px">Entrenamos la IA</h3>
+        <p style="font-size:14.5px;color:#A0A0A0;line-height:1.55;margin:0">Cargamos tu información, tu catálogo y tus procesos. El agente aprende a hablar como tu negocio.</p>
+      </div>
+      <div class="bs-reveal" style="position:relative;padding:0 22px">
+        <div style="font-weight:900;font-size:15px;color:#D4A017;font-variant-numeric:tabular-nums;margin-bottom:20px;display:flex;align-items:center;gap:12px">03<span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(212,160,23,0.4),transparent)" class="bs-hide-m"></span></div>
+        <h3 style="font-weight:700;font-size:20px;margin:0 0 10px">Automatiza 24/7</h3>
+        <p style="font-size:14.5px;color:#A0A0A0;line-height:1.55;margin:0">El agente atiende, agenda y da seguimiento de forma autónoma — de día, de noche y en días festivos.</p>
+      </div>
+      <div class="bs-reveal" style="position:relative;padding:0 0 0 22px">
+        <div style="font-weight:900;font-size:15px;color:#D4A017;font-variant-numeric:tabular-nums;margin-bottom:20px">04</div>
+        <h3 style="font-weight:700;font-size:20px;margin:0 0 10px">Mides y escalas</h3>
+        <p style="font-size:14.5px;color:#A0A0A0;line-height:1.55;margin:0">Ves cada conversación y métrica en un panel. Ajustamos y ampliamos a más procesos y canales.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INDUSTRIAS ===================== -->
+<section id="industrias" style="max-width:1180px;margin:0 auto;padding:104px 28px;scroll-margin-top:72px">
+  <div class="bs-reveal" style="margin-bottom:54px">
+    <div style="font-size:11.5px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#D4A017;margin-bottom:14px">Industrias</div>
+    <h2 style="font-weight:800;font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-0.015em;margin:0;max-width:20ch">Hecho a la medida de tu sector.</h2>
+  </div>
+  <div class="bs-g4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+    <div class="bs-card bs-reveal" style="background:#111;border:1px solid #222;border-radius:18px;padding:28px;overflow:hidden;position:relative">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:20px" aria-hidden="true"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3"/><path d="M9 9v0M9 12v0M9 15v0"/></svg>
+      <h3 style="font-weight:700;font-size:18px;margin:0 0 8px">Inmobiliaria</h3>
+      <p style="font-size:14px;color:#A0A0A0;line-height:1.55;margin:0">Captura interesados, agenda visitas y filtra prospectos calificados antes de que llegue tu asesor.</p>
+    </div>
+    <div class="bs-card bs-reveal" style="background:#111;border:1px solid #222;border-radius:18px;padding:28px">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:20px" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><circle cx="7" cy="15" r="1.4" fill="#D4A017" stroke="none"/></svg>
+      <h3 style="font-weight:700;font-size:18px;margin:0 0 8px">Cobranza</h3>
+      <p style="font-size:14px;color:#A0A0A0;line-height:1.55;margin:0">Recordatorios de pago, planes y seguimiento automático, con un trato consistente y respetuoso.</p>
+    </div>
+    <div class="bs-card bs-reveal" style="background:#111;border:1px solid #222;border-radius:18px;padding:28px">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:20px" aria-hidden="true"><path d="M12 2a4 4 0 0 1 4 4v1a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
+      <h3 style="font-weight:700;font-size:18px;margin:0 0 8px">Servicios y consultoría</h3>
+      <p style="font-size:14px;color:#A0A0A0;line-height:1.55;margin:0">Agenda sesiones, responde dudas y da seguimiento postventa sin saturar a tu equipo.</p>
+    </div>
+    <div class="bs-card bs-reveal" style="background:#111;border:1px solid #222;border-radius:18px;padding:28px">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:20px" aria-hidden="true"><circle cx="9" cy="21" r="1.5" fill="#D4A017" stroke="none"/><circle cx="18" cy="21" r="1.5" fill="#D4A017" stroke="none"/><path d="M2 3h3l2.5 13h11l2-9H6"/></svg>
+      <h3 style="font-weight:700;font-size:18px;margin:0 0 8px">Retail y e-commerce</h3>
+      <p style="font-size:14px;color:#A0A0A0;line-height:1.55;margin:0">Toma pedidos, resuelve dudas de producto y recupera carritos abandonados por WhatsApp.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== POR QUÉ BLACKSHEEP ===================== -->
+<section id="porque" style="background:#0c0c0c;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;scroll-margin-top:72px">
+  <div class="bs-why" style="max-width:1180px;margin:0 auto;padding:104px 28px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+    <div class="bs-reveal">
+      <div style="font-size:11.5px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#D4A017;margin-bottom:14px">Por qué nosotros</div>
+      <h2 style="font-weight:800;font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-0.015em;margin:0 0 30px;max-width:16ch">La oveja negra de la automatización.</h2>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;gap:14px">
+          <span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(212,160,23,0.12);border:1px solid rgba(212,160,23,0.4);display:flex;align-items:center;justify-content:center;color:#D4A017;font-size:13px;font-weight:800">✓</span>
+          <div><div style="font-weight:700;font-size:16px;margin-bottom:3px">Implementación en días</div><div style="font-size:14.5px;color:#A0A0A0;line-height:1.5">Operativo en menos de una semana, sin frenar tu operación.</div></div>
+        </div>
+        <div style="display:flex;gap:14px">
+          <span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(212,160,23,0.12);border:1px solid rgba(212,160,23,0.4);display:flex;align-items:center;justify-content:center;color:#D4A017;font-size:13px;font-weight:800">✓</span>
+          <div><div style="font-weight:700;font-size:16px;margin-bottom:3px">Conversaciones que suenan humanas</div><div style="font-size:14.5px;color:#A0A0A0;line-height:1.5">Lenguaje natural en español, adaptado al tono de tu marca.</div></div>
+        </div>
+        <div style="display:flex;gap:14px">
+          <span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(212,160,23,0.12);border:1px solid rgba(212,160,23,0.4);display:flex;align-items:center;justify-content:center;color:#D4A017;font-size:13px;font-weight:800">✓</span>
+          <div><div style="font-weight:700;font-size:16px;margin-bottom:3px">Datos seguros y bajo control</div><div style="font-size:14.5px;color:#A0A0A0;line-height:1.5">Información cifrada y siempre tuya. Tú defines las reglas.</div></div>
+        </div>
+        <div style="display:flex;gap:14px">
+          <span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(212,160,23,0.12);border:1px solid rgba(212,160,23,0.4);display:flex;align-items:center;justify-content:center;color:#D4A017;font-size:13px;font-weight:800">✓</span>
+          <div><div style="font-weight:700;font-size:16px;margin-bottom:3px">Acompañamiento real</div><div style="font-size:14.5px;color:#A0A0A0;line-height:1.5">Un equipo que mide, ajusta y escala contigo, no un software que te dejan solo.</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- WhatsApp sim -->
+    <div class="bs-reveal" style="display:flex;justify-content:center">
+      <div style="width:100%;max-width:360px;background:#0b141a;border:1px solid #222;border-radius:22px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,0.5)">
+        <div style="background:#1f2c33;padding:14px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #0a0a0a">
+          <div style="width:38px;height:38px;border-radius:50%;background:#0A0A0A;border:1.5px solid #D4A017;display:flex;align-items:center;justify-content:center">
+            <svg viewBox="0 0 60 60" width="26" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="wa" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F5C842"/><stop offset="100%" stop-color="#A07810"/></linearGradient></defs>
+              <circle cx="26" cy="34" r="10" fill="#111" stroke="url(#wa)" stroke-width="1.5"/><circle cx="34" cy="30" r="9" fill="#111" stroke="url(#wa)" stroke-width="1.5"/><circle cx="30" cy="22" r="8" fill="#111" stroke="url(#wa)" stroke-width="1.5"/><circle cx="22" cy="25" r="7" fill="#111" stroke="url(#wa)" stroke-width="1.5"/><ellipse cx="39" cy="19" rx="6" ry="5.5" fill="#111" stroke="url(#wa)" stroke-width="1.5"/><circle cx="42" cy="17" r="1.5" fill="url(#wa)"/>
+            </svg>
+          </div>
+          <div><div style="font-weight:700;font-size:14px;color:#F0F0F0">BLACKSHEEP IA</div><div style="font-size:11.5px;color:#8aa">en línea</div></div>
+          <div style="margin-left:auto;display:flex;gap:6px;align-items:center"><span style="width:7px;height:7px;border-radius:50%;background:#4ad17a"></span></div>
+        </div>
+        <div style="padding:18px 14px;display:flex;flex-direction:column;gap:10px;background:#0b141a;min-height:300px">
+          <div style="align-self:flex-end;max-width:80%;background:#005c4b;color:#e9fff6;padding:9px 12px;border-radius:10px 10px 2px 10px;font-size:14px;line-height:1.45">Hola, quiero agendar una visita para ver el departamento.</div>
+          <div style="align-self:flex-start;max-width:84%;background:#1f2c33;color:#e9edef;padding:9px 12px;border-radius:10px 10px 10px 2px;font-size:14px;line-height:1.45">¡Claro! 🏠 Tengo disponible mañana a las 11:00 o el jueves a las 17:00. ¿Cuál te acomoda?</div>
+          <div style="align-self:flex-end;max-width:80%;background:#005c4b;color:#e9fff6;padding:9px 12px;border-radius:10px 10px 2px 10px;font-size:14px;line-height:1.45">Mañana a las 11.</div>
+          <div style="align-self:flex-start;max-width:84%;background:#1f2c33;color:#e9edef;padding:9px 12px;border-radius:10px 10px 10px 2px;font-size:14px;line-height:1.45">Perfecto. ¿A nombre de quién agendo la visita?</div>
+          <div style="align-self:flex-end;max-width:80%;background:#005c4b;color:#e9fff6;padding:9px 12px;border-radius:10px 10px 2px 10px;font-size:14px;line-height:1.45">Daniela Ríos.</div>
+          <div style="align-self:flex-start;max-width:86%;background:#1f2c33;color:#e9edef;padding:10px 12px;border-radius:10px;font-size:14px;line-height:1.45;border:1px solid rgba(212,160,23,0.3)"><span style="color:#F5C842;font-weight:600">✓ Visita confirmada</span><br>Mañana 11:00 · Av. Reforma 120<br><span style="color:#8aa;font-size:12.5px">Te envié la ubicación y un recordatorio. ¡Nos vemos, Daniela! 🐑</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section id="contacto" style="max-width:1180px;margin:0 auto;padding:104px 28px;scroll-margin-top:80px">
+  <div class="bs-reveal" style="position:relative;overflow:hidden;border:1px solid rgba(212,160,23,0.28);border-radius:26px;background:radial-gradient(ellipse 80% 120% at 50% 0%,rgba(212,160,23,0.14),#0c0c0c 70%);padding:72px 40px;text-align:center">
+    <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(rgba(212,160,23,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(212,160,23,0.05) 1px,transparent 1px);background-size:50px 50px;mask-image:radial-gradient(ellipse 70% 100% at 50% 0%,#000,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 70% 100% at 50% 0%,#000,transparent 70%)"></div>
+    <div style="position:relative;z-index:1">
+      <h2 style="font-weight:900;font-size:clamp(30px,4.4vw,52px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 16px;max-width:18ch;margin-left:auto;margin-right:auto">Deja que la IA atienda.<br><span style="background:linear-gradient(135deg,#F5C842,#A07810);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Tú dedícate a crecer.</span></h2>
+      <p style="font-size:18px;color:#A0A0A0;max-width:46ch;margin:0 auto 34px;line-height:1.5">Agenda una demo gratuita de 20 minutos y escucha a tu propio agente de IA atender una conversación real.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="mailto:hola@black-shep.net" class="bs-btn-gold" style="text-decoration:none;background:linear-gradient(135deg,#F5C842,#A07810);color:#0A0A0A;font-weight:700;font-size:16px;padding:16px 30px;border-radius:12px;box-shadow:0 12px 32px rgba(212,160,23,0.28)">Agenda tu demo gratis</a>
+        <a href="https://wa.me/" class="bs-btn-ghost" style="text-decoration:none;border:1px solid #2a2a2a;color:#F0F0F0;font-weight:600;font-size:16px;padding:16px 28px;border-radius:12px;display:inline-flex;align-items:center;gap:9px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#D4A017" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.38a9.86 9.86 0 0 0 4.73 1.2c5.46 0 9.9-4.44 9.9-9.9S17.5 2 12.04 2zm0 18.1c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.15.82.84-3.07-.2-.32a8.2 8.2 0 1 1 7.06 4.09z"/></svg>
+          Escríbenos por WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer style="border-top:1px solid #1a1a1a;background:#0A0A0A">
+  <div class="bs-2col" style="max-width:1180px;margin:0 auto;padding:56px 28px 36px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px">
+    <div>
+      <div style="display:flex;align-items:center;gap:11px;margin-bottom:16px">
+        <svg viewBox="0 0 100 100" width="30" height="30" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="fg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F5C842"/><stop offset="100%" stop-color="#A07810"/></linearGradient></defs>
+          <circle cx="42" cy="56" r="16" fill="#111" stroke="url(#fg)" stroke-width="2"/><circle cx="54" cy="50" r="14" fill="#111" stroke="url(#fg)" stroke-width="2"/><circle cx="48" cy="40" r="12" fill="#111" stroke="url(#fg)" stroke-width="2"/><circle cx="36" cy="43" r="11" fill="#111" stroke="url(#fg)" stroke-width="2"/><ellipse cx="46" cy="50" rx="16" ry="12" fill="#0a0a0a"/><ellipse cx="63" cy="37" rx="9" ry="8" fill="#111" stroke="url(#fg)" stroke-width="1.8"/><circle cx="67" cy="34" r="2" fill="url(#fg)"/><rect x="36" y="70" width="4" height="10" rx="2" fill="url(#fg)" opacity="0.8"/><rect x="44" y="71" width="4" height="9" rx="2" fill="url(#fg)" opacity="0.8"/><rect x="52" y="70" width="4" height="10" rx="2" fill="url(#fg)" opacity="0.8"/><rect x="60" y="71" width="4" height="9" rx="2" fill="url(#fg)" opacity="0.8"/>
+        </svg>
+        <span style="font-weight:900;font-size:18px;letter-spacing:.06em"><span style="background:linear-gradient(135deg,#F5C842,#A07810);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">BLACK</span><span style="color:#F0F0F0">SHEEP</span></span>
+      </div>
+      <p style="font-size:14px;color:#A0A0A0;line-height:1.6;max-width:32ch;margin:0 0 18px">Automatización con Inteligencia Artificial para empresas de LATAM. Atención, citas y prospección por WhatsApp, 24/7.</p>
+      <div style="display:flex;gap:12px">
+        <a href="https://instagram.com/blacksheep.ai" aria-label="Instagram" style="width:38px;height:38px;border-radius:10px;border:1px solid #222;display:flex;align-items:center;justify-content:center;color:#A0A0A0;transition:all .2s" class="bs-btn-ghost">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://tiktok.com/@blacksheep.ai" aria-label="TikTok" style="width:38px;height:38px;border-radius:10px;border:1px solid #222;display:flex;align-items:center;justify-content:center;color:#A0A0A0;transition:all .2s" class="bs-btn-ghost">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.5 3.6 3.5 3.9v2.6c-1.3.1-2.5-.3-3.5-.9v6.2c0 3.4-2.6 5.7-5.7 5.7-2.9 0-5.3-2.2-5.3-5.1 0-3.1 2.6-5.2 5.7-4.9v2.7c-.4-.1-.9-.2-1.3-.1-1.2.1-2 .9-1.9 2.1.1 1.1 1 1.9 2.1 1.8 1.3-.1 2-1 2-2.4V3h2.6z"/></svg>
+        </a>
+        <a href="https://linkedin.com/company/blacksheep-ai" aria-label="LinkedIn" style="width:38px;height:38px;border-radius:10px;border:1px solid #222;display:flex;align-items:center;justify-content:center;color:#A0A0A0;transition:all .2s" class="bs-btn-ghost">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3 0-2.95-1.8-2.95s-2.08 1.4-2.08 2.85V21H9z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#555;margin-bottom:16px">Producto</div>
+      <div style="display:flex;flex-direction:column;gap:11px;font-size:14px">
+        <a href="#servicios" style="color:#A0A0A0;text-decoration:none">Servicios</a>
+        <a href="#como" style="color:#A0A0A0;text-decoration:none">Cómo funciona</a>
+        <a href="#industrias" style="color:#A0A0A0;text-decoration:none">Industrias</a>
+        <a href="#porque" style="color:#A0A0A0;text-decoration:none">Por qué nosotros</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#555;margin-bottom:16px">Industrias</div>
+      <div style="display:flex;flex-direction:column;gap:11px;font-size:14px;color:#A0A0A0">
+        <span>Inmobiliaria</span><span>Cobranza</span><span>Servicios y consultoría</span><span>Retail y e-commerce</span>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#555;margin-bottom:16px">Contacto</div>
+      <div style="display:flex;flex-direction:column;gap:11px;font-size:14px">
+        <a href="mailto:hola@black-shep.net" style="color:#A0A0A0;text-decoration:none">hola@black-shep.net</a>
+        <a href="https://wa.me/" style="color:#A0A0A0;text-decoration:none">WhatsApp Business</a>
+        <a href="#contacto" style="color:#D4A017;text-decoration:none;font-weight:600">Agenda una demo</a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1180px;margin:0 auto;padding:0 28px 36px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-top:1px solid #1a1a1a;padding-top:24px">
+    <span style="font-size:13px;color:#555">© 2025 BLACKSHEEP · Intelligent Automation</span>
+    <span style="font-size:13px;color:#555;font-family:monospace">black-shep.net</span>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    const root = this.root;
+    if (!root) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---- Frozen-timeline guard ----
+    // Some embedded preview contexts never advance the CSS animation clock, which
+    // would leave entrance-animated content stuck on its hidden "from" state.
+    // Detect that and snap everything to its final visible state.
+    if (!reduce) {
+      setTimeout(() => {
+        const probe = root.querySelector('h1');
+        const a = probe && probe.getAnimations ? probe.getAnimations()[0] : null;
+        const ct = a ? Number(a.currentTime) : null;
+        // Entrance animation should have advanced well past 0 by now; if it's
+        // pinned at 0 the context isn't running CSS animations — snap to final.
+        if (!a || ct == null || ct < 1) {
+          root.classList.add('bs-nomotion');
+        }
+      }, 400);
+    }
+
+    // ---- Nav blur on scroll ----
+    const nav = root.querySelector('[data-nav]');
+    const onScroll = () => {
+      if (!nav) return;
+      if (window.scrollY > 12) {
+        nav.style.background = 'rgba(10,10,10,0.85)';
+        nav.style.borderBottomColor = '#222';
+      } else {
+        nav.style.background = 'rgba(10,10,10,0.55)';
+        nav.style.borderBottomColor = 'rgba(34,34,34,0)';
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // ---- Responsive nav (show burger under 900) ----
+    const burger = root.querySelector('[data-burger]');
+    const mobile = root.querySelector('[data-mobile]');
+    const applyNav = () => {
+      const small = window.innerWidth <= 900;
+      if (burger) burger.style.display = small ? 'flex' : 'none';
+      if (!small && mobile) mobile.style.display = 'none';
+    };
+    applyNav();
+    window.addEventListener('resize', applyNav);
+
+    // ---- Mobile menu toggle ----
+    if (burger && mobile) {
+      burger.addEventListener('click', () => {
+        const open = mobile.style.display === 'flex';
+        mobile.style.display = open ? 'none' : 'flex';
+      });
+      root.querySelectorAll('.bs-mlink').forEach((a) =>
+        a.addEventListener('click', () => { mobile.style.display = 'none'; })
+      );
+    }
+
+    // ---- Scroll reveals ----
+    const reveals = root.querySelectorAll('.bs-reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      reveals.forEach((el) => el.classList.add('bs-in'));
+    } else {
+      let stagger = 0;
+      const ro = new IntersectionObserver((ents) => {
+        ents.forEach((e) => {
+          if (e.isIntersecting) {
+            const el = e.target;
+            const sibs = Array.from(el.parentElement.children).filter((c) => c.classList.contains('bs-reveal'));
+            const i = sibs.indexOf(el);
+            el.style.transitionDelay = (i > 0 ? i * 80 : 0) + 'ms';
+            el.classList.add('bs-in');
+            ro.unobserve(el);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+      reveals.forEach((el) => ro.observe(el));
+    }
+
+    // ---- Counters ----
+    const counters = root.querySelectorAll('[data-count]');
+    const animate = (el) => {
+      const target = parseFloat(el.getAttribute('data-count')) || 0;
+      const suf = el.getAttribute('data-suf') || '';
+      if (reduce) { el.textContent = target + suf; return; }
+      const dur = 1400, t0 = performance.now();
+      const tick = (t) => {
+        let p = Math.min(1, (t - t0) / dur);
+        p = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * p) + suf;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    if ('IntersectionObserver' in window) {
+      const co = new IntersectionObserver((ents) => {
+        ents.forEach((e) => { if (e.isIntersecting) { animate(e.target); co.unobserve(e.target); } });
+      }, { threshold: 0.6 });
+      counters.forEach((el) => co.observe(el));
+    } else {
+      counters.forEach(animate);
+    }
+
+    this._cleanup = () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', applyNav);
+    };
+  }
+
+  componentWillUnmount() { if (this._cleanup) this._cleanup(); }
+
+  renderVals() {
+    return { rootRef: (el) => { this.root = el; } };
+  }
+}
+</script>
+</body>
+</html>

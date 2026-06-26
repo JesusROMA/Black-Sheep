@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0A0A0B}
+html{scroll-behavior:smooth}
+::selection{background:#FF6A1A;color:#0A0A0B}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:#26262b;border-radius:6px}
+::-webkit-scrollbar-track{background:#0A0A0B}
+@keyframes wave{0%,100%{transform:scaleY(0.22)}50%{transform:scaleY(1)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+@keyframes l1{0%,3%{opacity:0;transform:translateY(7px)}7%,93%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes l2{0%,17%{opacity:0;transform:translateY(7px)}21%,93%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes l3{0%,33%{opacity:0;transform:translateY(7px)}37%,93%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes l4{0%,49%{opacity:0;transform:translateY(7px)}53%,93%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes l5{0%,69%{opacity:0;transform:translateY(7px)}73%,93%{opacity:1;transform:none}100%{opacity:0}}
+details[open] .fq-plus{transform:rotate(45deg)}
+.fq summary::-webkit-details-marker{display:none}
+.navlink{position:relative;color:#B6B6BC;text-decoration:none;font-size:15px;font-weight:500;transition:color .2s}
+.navlink:hover{color:#F2F0EC}
+.navlink::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:#FF6A1A;transition:width .25s}
+.navlink:hover::after{width:100%}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="background:#0A0A0B;color:#F2F0EC;font-family:'Hanken Grotesk',sans-serif;min-height:100vh;overflow-x:hidden;position:relative">
+
+<!-- ambient glow -->
+<div style="position:absolute;top:-180px;left:50%;transform:translateX(-50%);width:900px;height:520px;background:radial-gradient(ellipse at center,rgba(255,106,26,0.18),transparent 65%);pointer-events:none;z-index:0"></div>
+
+<!-- ===== NAV ===== -->
+<nav style="position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(10,10,11,0.72);border-bottom:1px solid rgba(255,255,255,0.07)">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between">
+    <a href="#top" style="display:flex;align-items:center;gap:13px;text-decoration:none">
+      <span style="display:inline-flex;gap:4px;align-items:center">
+        <span style="width:9px;height:9px;border-radius:50%;background:#3A3A40"></span>
+        <span style="width:9px;height:9px;border-radius:50%;background:#3A3A40"></span>
+        <span style="width:11px;height:11px;border-radius:50%;background:#FF6A1A;box-shadow:0 0 14px rgba(255,106,26,0.8)"></span>
+        <span style="width:9px;height:9px;border-radius:50%;background:#3A3A40"></span>
+      </span>
+      <span style="font-family:'Space Grotesk';font-weight:700;font-size:19px;letter-spacing:-0.02em;color:#F2F0EC">black<span style="color:#FF6A1A">·</span>sheep</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:34px">
+      <div style="display:none;gap:34px;align-items:center" data-desk="1">
+        <a href="#como" class="navlink" data-en="How it works">Cómo funciona</a>
+        <a href="#casos" class="navlink" data-en="Use cases">Casos</a>
+        <a href="#demo" class="navlink" data-en="Live demo">Demo</a>
+        <a href="#precios" class="navlink" data-en="Pricing">Precios</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:4px;border:1px solid rgba(255,255,255,0.10);border-radius:999px;padding:3px">
+        <span data-lang-btn="es" onClick="{{ pickEs }}" style="cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;transition:all .2s">ES</span>
+        <span data-lang-btn="en" onClick="{{ pickEn }}" style="cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;transition:all .2s">EN</span>
+      </div>
+      <a href="#contacto" style="text-decoration:none;background:linear-gradient(135deg,#FF8A1E,#FF4D00);color:#0A0A0B;font-weight:700;font-size:14px;padding:11px 18px;border-radius:10px;box-shadow:0 6px 22px rgba(255,77,0,0.32);transition:transform .15s" style-hover="transform:translateY(-2px)" data-en="Book a demo">Agendar demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="top" style="position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:84px 32px 70px;display:grid;grid-template-columns:1.05fr 0.95fr;gap:60px;align-items:center">
+  <div>
+    <div style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#FF8A3D;margin-bottom:26px">
+      <span style="width:18px;height:1px;background:#FF6A1A"></span>
+      <span data-en="AI agents for call centers">Agentes de IA para call centers</span>
+    </div>
+    <h1 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(40px,6vw,76px);line-height:0.98;letter-spacing:-0.03em;margin:0 0 26px">
+      <span data-en="Never miss">Nunca pierdas</span><br><span data-en="another call." style="color:#FF6A1A">otra llamada.</span>
+    </h1>
+    <p style="font-size:19px;line-height:1.55;color:#A0A0A6;max-width:30em;margin:0 0 36px" data-en="Black-sheep deploys AI agents that answer, schedule appointments and take orders 24/7 — natural voice, on your phone line and WhatsApp.">Black-sheep despliega agentes de inteligencia artificial que contestan, agendan citas y levantan pedidos 24/7 — con voz natural, en tu línea telefónica y tu WhatsApp.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+      <a href="#contacto" style="text-decoration:none;background:linear-gradient(135deg,#FF8A1E,#FF4D00);color:#0A0A0B;font-weight:700;font-size:16px;padding:15px 26px;border-radius:12px;box-shadow:0 10px 30px rgba(255,77,0,0.34);transition:transform .15s" style-hover="transform:translateY(-2px)" data-en="Book a free demo">Agendar demo gratis</a>
+      <a href="#demo" style="text-decoration:none;border:1px solid rgba(255,255,255,0.16);color:#F2F0EC;font-weight:600;font-size:16px;padding:15px 24px;border-radius:12px;display:inline-flex;align-items:center;gap:9px;transition:border-color .2s" style-hover="border-color:rgba(255,255,255,0.4)"><span style="color:#FF8A3D">▶</span><span data-en="Hear the agent">Escuchar al agente</span></a>
+    </div>
+    <div style="display:flex;align-items:center;gap:22px;margin-top:38px;flex-wrap:wrap">
+      <span style="font-size:13px;color:#6E6E74;font-family:'JetBrains Mono',monospace;letter-spacing:0.04em" data-en="Connects with">Conecta con</span>
+      <div style="display:flex;gap:18px;align-items:center;color:#8E8E94;font-weight:600;font-size:14px;flex-wrap:wrap">
+        <span>WhatsApp</span><span style="color:#3A3A40">/</span><span data-en="Phone">Teléfono</span><span style="color:#3A3A40">/</span><span>CRM</span><span style="color:#3A3A40">/</span><span data-en="Calendar">Calendario</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- live call card -->
+  <div style="position:relative;animation:floatY 7s ease-in-out infinite">
+    <div style="position:absolute;inset:-1px;border-radius:24px;background:linear-gradient(160deg,rgba(255,138,30,0.5),transparent 40%);z-index:0"></div>
+    <div style="position:relative;z-index:1;background:#0F0F12;border:1px solid rgba(255,255,255,0.09);border-radius:23px;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,0.5)">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#FF8A1E,#FF4D00);display:flex;align-items:center;justify-content:center;font-size:18px">🐑</div>
+          <div>
+            <div style="font-weight:700;font-size:15px">Agente Black-sheep</div>
+            <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#8E8E94"><span style="width:7px;height:7px;border-radius:50%;background:#37E07A;animation:pulse 1.4s infinite"></span><span data-en="On call · live">En llamada · en vivo</span></div>
+          </div>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8E8E94">00:42</div>
+      </div>
+      <!-- waveform -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:4px;height:46px;padding:0 4px;margin-bottom:18px">
+        <span style="width:3px;height:38px;background:#FF6A1A;border-radius:2px;transform-origin:bottom;animation:wave 0.9s ease-in-out infinite;animation-delay:-0.0s"></span>
+        <span style="width:3px;height:38px;background:#FF7A2E;border-radius:2px;transform-origin:bottom;animation:wave 0.9s ease-in-out infinite;animation-delay:-0.5s"></span>
+        <span style="width:3px;height:38px;background:#FF6A1A;border-radius:2px;transform-origin:bottom;animation:wave 0.9s ease-in-out infinite;animation-delay:-0.2s"></span>
+        <span style="width:3px;height:38px;background:#FFB020;border-radius:2px;transform-origin:bottom;animation:wave 0.9s ease-in-out infinite;animation-delay:-0.7s"></span>
+        <span style="width:3px;height:38px;background:#FF6A1A;border-radius:2px;transform-origin:bottom;animation:wave 0.9s ease-in-out infinite;animation-delay:-0.3s"></span>
+        <span style="width:3px;height:38px;background:#FF7A2E;border-radius:2px;transform-origin:bottom;animation:wave 0.9s ease-in-out infinite;animation-delay:-0.9s"></span>
+        <span style="width:3px;height:38px;background:#FF6A1A;border-radius:2px;transform-origin:bottom;animation:wave 0.9s ease-in-out infinite;animation-delay:-0.1s"></span>
+        <span style="width:3px;height:38px;background:#FFB020;border-radius:2px;transform-origin:bottom;animation:wave 0.9s ease-in-out infinite;animation-delay:-0.6s"></span>
+        <span style="width:3px;height:38px;background:#FF6A1A;border-radius:2px;transform-origin:bottom;animation:wave 0.9s ease-in-out infinite;animation-delay:-0.4s"></span>
+        <span style="width:3px;height:38px;background:#FF7A2E;border-radius:2px;transform-origin:bottom;animation:wave 0.9s ease-in-out infinite;animation-delay:-0.8s"></span>
+        <span style="width:3px;height:38px;background:#FF6A1A;border-radius:2px;transform-origin:bottom;animation:wave 0.9s ease-in-out infinite;animation-delay:-0.15s"></span>
+        <span style="width:3px;height:38px;background:#FFB020;border-radius:2px;transform-origin:bottom;animation:wave 0.9s ease-in-out infinite;animation-delay:-0.55s"></span>
+        <span style="width:3px;height:38px;background:#FF6A1A;border-radius:2px;transform-origin:bottom;animation:wave 0.9s ease-in-out infinite;animation-delay:-0.35s"></span>
+        <span style="width:3px;height:38px;background:#FF7A2E;border-radius:2px;transform-origin:bottom;animation:wave 0.9s ease-in-out infinite;animation-delay:-0.75s"></span>
+      </div>
+      <!-- transcript -->
+      <div style="display:flex;flex-direction:column;gap:11px;min-height:248px;justify-content:flex-end">
+        <div style="align-self:flex-end;max-width:78%;background:#1A1A1E;border:1px solid rgba(255,255,255,0.06);padding:11px 14px;border-radius:14px 14px 4px 14px;font-size:14px;line-height:1.45;color:#D6D6DB;animation:l1 14s ease-in-out infinite" data-en="Hi, do you have a table for 4 tonight?">Hola, ¿tienen mesa para 4 esta noche?</div>
+        <div style="align-self:flex-start;max-width:80%;background:rgba(255,106,26,0.12);border:1px solid rgba(255,106,26,0.28);padding:11px 14px;border-radius:14px 14px 14px 4px;font-size:14px;line-height:1.45;color:#FFCBA0;animation:l2 14s ease-in-out infinite" data-en="Of course! What time would you like?">¡Claro! ¿A qué hora les gustaría?</div>
+        <div style="align-self:flex-end;max-width:78%;background:#1A1A1E;border:1px solid rgba(255,255,255,0.06);padding:11px 14px;border-radius:14px 14px 4px 14px;font-size:14px;line-height:1.45;color:#D6D6DB;animation:l3 14s ease-in-out infinite" data-en="At 8.">A las 8.</div>
+        <div style="align-self:flex-start;max-width:80%;background:rgba(255,106,26,0.12);border:1px solid rgba(255,106,26,0.28);padding:11px 14px;border-radius:14px 14px 14px 4px;font-size:14px;line-height:1.45;color:#FFCBA0;animation:l4 14s ease-in-out infinite" data-en="A table for 4 at 8:00 PM. Under what name?">Mesa para 4 a las 20:00. ¿A nombre de quién?</div>
+        <div style="align-self:flex-start;max-width:84%;background:linear-gradient(135deg,rgba(55,224,122,0.16),rgba(55,224,122,0.06));border:1px solid rgba(55,224,122,0.32);padding:11px 14px;border-radius:14px;font-size:14px;line-height:1.45;color:#9EF0BE;display:flex;align-items:center;gap:8px;animation:l5 14s ease-in-out infinite"><span style="font-size:15px">✓</span><span data-en="Reservation confirmed · sent via WhatsApp">Reserva confirmada · enviada por WhatsApp</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STRIP ===== -->
+<div style="border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);background:#0C0C0E">
+  <div style="max-width:1200px;margin:0 auto;padding:22px 32px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;font-size:14px;color:#7C7C82">
+    <span data-en="Answers in under 2 seconds" style="display:inline-flex;align-items:center;gap:9px"><span style="color:#37E07A">●</span>Responde en menos de 2 segundos</span>
+    <span style="color:#2A2A2E">|</span>
+    <span data-en="Handles 100s of calls at once" style="display:inline-flex;align-items:center;gap:9px"><span style="color:#FF8A3D">●</span>Atiende cientos de llamadas a la vez</span>
+    <span style="color:#2A2A2E">|</span>
+    <span data-en="No more hold music" style="display:inline-flex;align-items:center;gap:9px"><span style="color:#FFB020">●</span>Cero tiempo en espera</span>
+    <span style="color:#2A2A2E">|</span>
+    <span data-en="Sounds human" style="display:inline-flex;align-items:center;gap:9px"><span style="color:#37E07A">●</span>Suena humano</span>
+  </div>
+</div>
+
+<!-- ===== CÓMO FUNCIONA ===== -->
+<section id="como" style="max-width:1200px;margin:0 auto;padding:110px 32px;scroll-margin-top:90px">
+  <div style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#FF8A3D;margin-bottom:18px">
+    <span style="width:18px;height:1px;background:#FF6A1A"></span><span data-en="How it works">Cómo funciona</span>
+  </div>
+  <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(30px,4vw,52px);line-height:1.04;letter-spacing:-0.02em;margin:0 0 16px;max-width:18ch" data-en="From ringing phone to done task — fully autonomous.">Del teléfono sonando a la tarea resuelta — de forma autónoma.</h2>
+  <p style="font-size:18px;color:#9A9AA0;max-width:48ch;margin:0 0 56px" data-en="Your agent listens, understands and acts. No menus, no waiting, no lost leads.">Tu agente escucha, entiende y actúa. Sin menús, sin esperas, sin clientes perdidos.</p>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+    <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:26px 22px;position:relative;overflow:hidden">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#FF6A1A;margin-bottom:54px">01</div>
+      <div style="font-family:'Space Grotesk';font-weight:700;font-size:20px;margin-bottom:9px" data-en="The call comes in">Entra la llamada</div>
+      <p style="font-size:14.5px;color:#9A9AA0;line-height:1.5;margin:0" data-en="By phone, WhatsApp or chat. The agent picks up instantly, day or night.">Por teléfono, WhatsApp o chat. El agente contesta al instante, de día o de noche.</p>
+    </div>
+    <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:26px 22px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#FF6A1A;margin-bottom:54px">02</div>
+      <div style="font-family:'Space Grotesk';font-weight:700;font-size:20px;margin-bottom:9px" data-en="It understands intent">Entiende la intención</div>
+      <p style="font-size:14.5px;color:#9A9AA0;line-height:1.5;margin:0" data-en="Natural conversation in Spanish or English. It asks what it needs and confirms details.">Conversación natural en español o inglés. Pregunta lo necesario y confirma los detalles.</p>
+    </div>
+    <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:26px 22px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#FF6A1A;margin-bottom:54px">03</div>
+      <div style="font-family:'Space Grotesk';font-weight:700;font-size:20px;margin-bottom:9px" data-en="It takes action">Ejecuta la acción</div>
+      <p style="font-size:14.5px;color:#9A9AA0;line-height:1.5;margin:0" data-en="Books the appointment, places the order or answers — connected to your tools in real time.">Agenda la cita, levanta el pedido o responde — conectado a tus herramientas en tiempo real.</p>
+    </div>
+    <div style="background:linear-gradient(160deg,rgba(255,106,26,0.14),#101013);border:1px solid rgba(255,106,26,0.28);border-radius:18px;padding:26px 22px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#FF8A3D;margin-bottom:54px">04</div>
+      <div style="font-family:'Space Grotesk';font-weight:700;font-size:20px;margin-bottom:9px" data-en="It confirms & logs">Confirma y registra</div>
+      <p style="font-size:14.5px;color:#C7B3A2;line-height:1.5;margin:0" data-en="Sends confirmation, updates your CRM and calendar, and hands off to a human if needed.">Envía la confirmación, actualiza tu CRM y calendario, y deriva a un humano si hace falta.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CASOS ===== -->
+<section id="casos" style="background:#0C0C0E;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);scroll-margin-top:72px">
+  <div style="max-width:1200px;margin:0 auto;padding:110px 32px">
+    <div style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#FF8A3D;margin-bottom:18px">
+      <span style="width:18px;height:1px;background:#FF6A1A"></span><span data-en="Use cases">Casos de uso</span>
+    </div>
+    <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(30px,4vw,52px);line-height:1.04;letter-spacing:-0.02em;margin:0 0 56px;max-width:20ch" data-en="One agent, every industry.">Un agente, hecho para tu industria.</h2>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px">
+      <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:32px;transition:border-color .25s" style-hover="border-color:rgba(255,106,26,0.4)">
+        <div style="font-size:30px;margin-bottom:18px">🍽️</div>
+        <h3 style="font-family:'Space Grotesk';font-weight:700;font-size:22px;margin:0 0 10px" data-en="Restaurants">Restaurantes</h3>
+        <p style="font-size:15px;color:#9A9AA0;line-height:1.55;margin:0 0 18px" data-en="Reservations, takeout orders, hours and menu questions — answered the moment they call.">Reservas, pedidos para llevar, horarios y dudas del menú — resueltos en el momento en que llaman.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="font-size:12.5px;font-family:'JetBrains Mono',monospace;color:#C9C9CE;border:1px solid rgba(255,255,255,0.12);padding:5px 11px;border-radius:999px" data-en="Reservations">Reservas</span>
+          <span style="font-size:12.5px;font-family:'JetBrains Mono',monospace;color:#C9C9CE;border:1px solid rgba(255,255,255,0.12);padding:5px 11px;border-radius:999px" data-en="Orders">Pedidos</span>
+          <span style="font-size:12.5px;font-family:'JetBrains Mono',monospace;color:#C9C9CE;border:1px solid rgba(255,255,255,0.12);padding:5px 11px;border-radius:999px" data-en="Waitlist">Lista de espera</span>
+        </div>
+      </div>
+      <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:32px;transition:border-color .25s" style-hover="border-color:rgba(255,106,26,0.4)">
+        <div style="font-size:30px;margin-bottom:18px">🏥</div>
+        <h3 style="font-family:'Space Grotesk';font-weight:700;font-size:22px;margin:0 0 10px" data-en="Clinics & hospitals">Clínicas y hospitales</h3>
+        <p style="font-size:15px;color:#9A9AA0;line-height:1.55;margin:0 0 18px" data-en="Schedule, reschedule and remind patients of appointments. Fewer no-shows, lighter front desk.">Agenda, reagenda y recuerda citas a los pacientes. Menos ausencias, recepción más ligera.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="font-size:12.5px;font-family:'JetBrains Mono',monospace;color:#C9C9CE;border:1px solid rgba(255,255,255,0.12);padding:5px 11px;border-radius:999px" data-en="Appointments">Citas</span>
+          <span style="font-size:12.5px;font-family:'JetBrains Mono',monospace;color:#C9C9CE;border:1px solid rgba(255,255,255,0.12);padding:5px 11px;border-radius:999px" data-en="Reminders">Recordatorios</span>
+          <span style="font-size:12.5px;font-family:'JetBrains Mono',monospace;color:#C9C9CE;border:1px solid rgba(255,255,255,0.12);padding:5px 11px;border-radius:999px" data-en="Triage">Pre-triaje</span>
+        </div>
+      </div>
+      <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:32px;transition:border-color .25s" style-hover="border-color:rgba(255,106,26,0.4)">
+        <div style="font-size:30px;margin-bottom:18px">📦</div>
+        <h3 style="font-family:'Space Grotesk';font-weight:700;font-size:22px;margin:0 0 10px" data-en="Retail & orders">Retail y pedidos</h3>
+        <p style="font-size:15px;color:#9A9AA0;line-height:1.55;margin:0 0 18px" data-en="Take orders, check stock and track shipments — logged straight into your CRM.">Levanta pedidos, consulta inventario y da seguimiento a envíos — registrado directo en tu CRM.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="font-size:12.5px;font-family:'JetBrains Mono',monospace;color:#C9C9CE;border:1px solid rgba(255,255,255,0.12);padding:5px 11px;border-radius:999px" data-en="Orders">Pedidos</span>
+          <span style="font-size:12.5px;font-family:'JetBrains Mono',monospace;color:#C9C9CE;border:1px solid rgba(255,255,255,0.12);padding:5px 11px;border-radius:999px" data-en="Tracking">Seguimiento</span>
+          <span style="font-size:12.5px;font-family:'JetBrains Mono',monospace;color:#C9C9CE;border:1px solid rgba(255,255,255,0.12);padding:5px 11px;border-radius:999px" data-en="Support">Soporte</span>
+        </div>
+      </div>
+      <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:32px;transition:border-color .25s" style-hover="border-color:rgba(255,106,26,0.4)">
+        <div style="font-size:30px;margin-bottom:18px">🔧</div>
+        <h3 style="font-family:'Space Grotesk';font-weight:700;font-size:22px;margin:0 0 10px" data-en="Home services">Servicios a domicilio</h3>
+        <p style="font-size:15px;color:#9A9AA0;line-height:1.55;margin:0 0 18px" data-en="Book visits, dispatch technicians and quote jobs — even while you're on the tools.">Agenda visitas, despacha técnicos y cotiza trabajos — incluso mientras estás en el campo.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="font-size:12.5px;font-family:'JetBrains Mono',monospace;color:#C9C9CE;border:1px solid rgba(255,255,255,0.12);padding:5px 11px;border-radius:999px" data-en="Scheduling">Agenda</span>
+          <span style="font-size:12.5px;font-family:'JetBrains Mono',monospace;color:#C9C9CE;border:1px solid rgba(255,255,255,0.12);padding:5px 11px;border-radius:999px" data-en="Dispatch">Despacho</span>
+          <span style="font-size:12.5px;font-family:'JetBrains Mono',monospace;color:#C9C9CE;border:1px solid rgba(255,255,255,0.12);padding:5px 11px;border-radius:999px" data-en="Quotes">Cotizaciones</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEMO ===== -->
+<section id="demo" style="max-width:1200px;margin:0 auto;padding:110px 32px;scroll-margin-top:90px">
+  <div style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#FF8A3D;margin-bottom:18px">
+    <span style="width:18px;height:1px;background:#FF6A1A"></span><span data-en="Live demo">Demo en vivo</span>
+  </div>
+  <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(30px,4vw,52px);line-height:1.04;letter-spacing:-0.02em;margin:0 0 12px;max-width:18ch" data-en="See a real conversation.">Mira una conversación real.</h2>
+  <p style="font-size:18px;color:#9A9AA0;max-width:50ch;margin:0 0 34px" data-en="Pick an industry and watch how the agent resolves it end to end.">Elige una industria y observa cómo el agente la resuelve de principio a fin.</p>
+
+  <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px">
+    <span onClick="{{ pickRest }}" style="{{ restTab }}">🍽️ <span data-en="Restaurant">Restaurante</span></span>
+    <span onClick="{{ pickClinic }}" style="{{ clinicTab }}">🏥 <span data-en="Clinic">Clínica</span></span>
+    <span onClick="{{ pickRetail }}" style="{{ retailTab }}">📦 <span data-en="Retail">Retail</span></span>
+    <span onClick="{{ pickServ }}" style="{{ servTab }}">🔧 <span data-en="Service">Servicio</span></span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1.3fr 0.7fr;gap:20px;align-items:start">
+    <!-- conversation panel -->
+    <div style="background:#0F0F12;border:1px solid rgba(255,255,255,0.09);border-radius:22px;padding:26px;min-height:340px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.07)">
+        <div style="width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#FF8A1E,#FF4D00);display:flex;align-items:center;justify-content:center;font-size:15px">🐑</div>
+        <div style="font-weight:700;font-size:14px">Agente Black-sheep</div>
+        <div style="margin-left:auto;font-size:12px;color:#37E07A;display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#37E07A"></span><span data-en="Active">Activo</span></div>
+      </div>
+      <sc-if value="{{ isRest }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:13px">
+          <div style="align-self:flex-end;max-width:80%;background:#1A1A1E;padding:11px 15px;border-radius:14px 14px 4px 14px;font-size:15px;line-height:1.45;color:#D6D6DB" data-en="Hi, I'd like a table for 4 tonight at 8.">Hola, quiero una mesa para 4 esta noche a las 8.</div>
+          <div style="align-self:flex-start;max-width:82%;background:rgba(255,106,26,0.12);border:1px solid rgba(255,106,26,0.26);padding:11px 15px;border-radius:14px 14px 14px 4px;font-size:15px;line-height:1.45;color:#FFCBA0" data-en="Of course! A table for 4 at 8:00 PM. Under what name?">¡Claro! Mesa para 4 a las 20:00. ¿A nombre de quién?</div>
+          <div style="align-self:flex-end;max-width:80%;background:#1A1A1E;padding:11px 15px;border-radius:14px 14px 4px 14px;font-size:15px;line-height:1.45;color:#D6D6DB" data-en="Laura.">A nombre de Laura.</div>
+          <div style="align-self:flex-start;max-width:84%;background:rgba(55,224,122,0.12);border:1px solid rgba(55,224,122,0.3);padding:11px 15px;border-radius:14px;font-size:15px;line-height:1.45;color:#9EF0BE" data-en="Done, Laura. Table for 4 today at 8:00 PM. Confirmation sent on WhatsApp 🐑">Listo, Laura. Mesa para 4 hoy a las 20:00. Te envié la confirmación por WhatsApp 🐑</div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isClinic }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:13px">
+          <div style="align-self:flex-end;max-width:80%;background:#1A1A1E;padding:11px 15px;border-radius:14px 14px 4px 14px;font-size:15px;line-height:1.45;color:#D6D6DB" data-en="I need to book an appointment with the dermatologist.">Necesito agendar una cita con el dermatólogo.</div>
+          <div style="align-self:flex-start;max-width:84%;background:rgba(255,106,26,0.12);border:1px solid rgba(255,106,26,0.26);padding:11px 15px;border-radius:14px 14px 14px 4px;font-size:15px;line-height:1.45;color:#FFCBA0" data-en="Gladly. I have Thursday 10:30 or Friday 4:00 PM. Which works?">Con gusto. Tengo disponibilidad el jueves 10:30 o el viernes 16:00. ¿Cuál prefiere?</div>
+          <div style="align-self:flex-end;max-width:80%;background:#1A1A1E;padding:11px 15px;border-radius:14px 14px 4px 14px;font-size:15px;line-height:1.45;color:#D6D6DB" data-en="Friday at 4.">El viernes a las 4.</div>
+          <div style="align-self:flex-start;max-width:84%;background:rgba(55,224,122,0.12);border:1px solid rgba(55,224,122,0.3);padding:11px 15px;border-radius:14px;font-size:15px;line-height:1.45;color:#9EF0BE" data-en="Booked: Dermatology, Friday 4:00 PM. I'll send a reminder the day before.">Agendada: Dermatología, viernes 16:00. Le enviaré un recordatorio un día antes.</div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isRetail }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:13px">
+          <div style="align-self:flex-end;max-width:80%;background:#1A1A1E;padding:11px 15px;border-radius:14px 14px 4px 14px;font-size:15px;line-height:1.45;color:#D6D6DB" data-en="I want to order 2 boxes of product A.">Quiero hacer un pedido: 2 cajas del producto A.</div>
+          <div style="align-self:flex-start;max-width:84%;background:rgba(255,106,26,0.12);border:1px solid rgba(255,106,26,0.26);padding:11px 15px;border-radius:14px 14px 14px 4px;font-size:15px;line-height:1.45;color:#FFCBA0" data-en="Got it. 2 boxes of Product A. Ship to your address on Av. Central 120?">Perfecto. 2 cajas de Producto A. ¿Lo envío a su dirección en Av. Central 120?</div>
+          <div style="align-self:flex-end;max-width:80%;background:#1A1A1E;padding:11px 15px;border-radius:14px 14px 4px 14px;font-size:15px;line-height:1.45;color:#D6D6DB" data-en="Yes, that one.">Sí, esa misma.</div>
+          <div style="align-self:flex-start;max-width:84%;background:rgba(55,224,122,0.12);border:1px solid rgba(55,224,122,0.3);padding:11px 15px;border-radius:14px;font-size:15px;line-height:1.45;color:#9EF0BE" data-en="Order confirmed. Total $480, delivery tomorrow. Logged in your CRM.">Pedido confirmado. Total $480, entrega mañana. Registrado en tu CRM.</div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isServ }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:13px">
+          <div style="align-self:flex-end;max-width:80%;background:#1A1A1E;padding:11px 15px;border-radius:14px 14px 4px 14px;font-size:15px;line-height:1.45;color:#D6D6DB" data-en="My A/C broke, can you send someone?">Se me dañó el aire acondicionado, ¿pueden mandar a alguien?</div>
+          <div style="align-self:flex-start;max-width:84%;background:rgba(255,106,26,0.12);border:1px solid rgba(255,106,26,0.26);padding:11px 15px;border-radius:14px 14px 14px 4px;font-size:15px;line-height:1.45;color:#FFCBA0" data-en="Sorry to hear that. I can book a visit tomorrow 9–11 AM. Works?">Lamento escucharlo. Puedo agendar una visita técnica mañana de 9 a 11. ¿Le funciona?</div>
+          <div style="align-self:flex-end;max-width:80%;background:#1A1A1E;padding:11px 15px;border-radius:14px 14px 4px 14px;font-size:15px;line-height:1.45;color:#D6D6DB" data-en="Yes, perfect.">Sí, perfecto.</div>
+          <div style="align-self:flex-start;max-width:84%;background:rgba(55,224,122,0.12);border:1px solid rgba(55,224,122,0.3);padding:11px 15px;border-radius:14px;font-size:15px;line-height:1.45;color:#9EF0BE" data-en="Done. Technician visit booked tomorrow 9–11. Confirming by SMS.">Listo. Visita técnica agendada mañana 9–11. Le confirmo por SMS.</div>
+        </div>
+      </sc-if>
+    </div>
+    <!-- actions taken -->
+    <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:22px;padding:26px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#7C7C82;margin-bottom:20px" data-en="What the agent did">Lo que hizo el agente</div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:#37E07A;font-size:15px;margin-top:1px">✓</span><span style="font-size:14.5px;color:#C9C9CE;line-height:1.4" data-en="Understood the request">Entendió la solicitud</span></div>
+        <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:#37E07A;font-size:15px;margin-top:1px">✓</span><span style="font-size:14.5px;color:#C9C9CE;line-height:1.4" data-en="Checked real-time availability">Verificó disponibilidad en tiempo real</span></div>
+        <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:#37E07A;font-size:15px;margin-top:1px">✓</span><span style="font-size:14.5px;color:#C9C9CE;line-height:1.4" data-en="Completed the action">Completó la acción</span></div>
+        <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:#37E07A;font-size:15px;margin-top:1px">✓</span><span style="font-size:14.5px;color:#C9C9CE;line-height:1.4" data-en="Sent confirmation & updated CRM">Envió confirmación y actualizó el CRM</span></div>
+      </div>
+      <div style="margin-top:26px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:10px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:#FF8A3D">38s</span>
+        <span style="font-size:13px;color:#7C7C82;line-height:1.3" data-en="average handle time, zero humans">tiempo promedio, cero intervención humana</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MÉTRICAS ===== -->
+<section style="background:#0C0C0E;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)">
+  <div style="max-width:1200px;margin:0 auto;padding:96px 32px">
+    <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(28px,3.4vw,44px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 56px;text-align:center" data-en="The numbers your team feels by Monday.">Resultados que tu equipo nota desde el lunes.</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+      <div style="text-align:center;padding:18px">
+        <div style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(40px,5vw,64px);line-height:1;background:linear-gradient(135deg,#FFB020,#FF4D00);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent"><span data-count="92" data-suf="%">92%</span></div>
+        <div style="font-size:15px;color:#9A9AA0;margin-top:12px;line-height:1.4" data-en="of calls resolved without a human">de llamadas resueltas sin un humano</div>
+      </div>
+      <div style="text-align:center;padding:18px">
+        <div style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(40px,5vw,64px);line-height:1;background:linear-gradient(135deg,#FFB020,#FF4D00);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent"><span data-count="3" data-suf="x">3x</span></div>
+        <div style="font-size:15px;color:#9A9AA0;margin-top:12px;line-height:1.4" data-en="more bookings & appointments captured">más reservas y citas capturadas</div>
+      </div>
+      <div style="text-align:center;padding:18px">
+        <div style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(40px,5vw,64px);line-height:1;background:linear-gradient(135deg,#FFB020,#FF4D00);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent"><span data-count="58" data-suf="%">58%</span></div>
+        <div style="font-size:15px;color:#9A9AA0;margin-top:12px;line-height:1.4" data-en="lower cost per interaction">menos costo por interacción</div>
+      </div>
+      <div style="text-align:center;padding:18px">
+        <div style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(40px,5vw,64px);line-height:1;background:linear-gradient(135deg,#FFB020,#FF4D00);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">24/7</div>
+        <div style="font-size:15px;color:#9A9AA0;margin-top:12px;line-height:1.4" data-en="always on — no shifts, no overtime">siempre activo — sin turnos ni horas extra</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INTEGRACIONES ===== -->
+<section style="max-width:1200px;margin:0 auto;padding:110px 32px">
+  <div style="display:grid;grid-template-columns:0.9fr 1.1fr;gap:60px;align-items:center">
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#FF8A3D;margin-bottom:18px">
+        <span style="width:18px;height:1px;background:#FF6A1A"></span><span data-en="Integrations">Integraciones</span>
+      </div>
+      <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(30px,4vw,48px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 18px" data-en="Plugs into the tools you already use.">Se conecta con las herramientas que ya usas.</h2>
+      <p style="font-size:18px;color:#9A9AA0;line-height:1.55;margin:0 0 28px" data-en="No rip-and-replace. Black-sheep sits on top of your phone line, WhatsApp and CRM — live in days, not months.">Sin reemplazar nada. Black-sheep se monta sobre tu línea telefónica, WhatsApp y CRM — operativo en días, no en meses.</p>
+      <a href="#contacto" style="text-decoration:none;color:#FF8A3D;font-weight:600;font-size:16px;display:inline-flex;align-items:center;gap:8px" data-en="See all integrations →">Ver todas las integraciones →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+      <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:22px 16px;text-align:center"><div style="font-size:26px;margin-bottom:10px">💬</div><div style="font-weight:600;font-size:14px">WhatsApp</div></div>
+      <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:22px 16px;text-align:center"><div style="font-size:26px;margin-bottom:10px">📞</div><div style="font-weight:600;font-size:14px" data-en="Phone / SIP">Teléfono / SIP</div></div>
+      <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:22px 16px;text-align:center"><div style="font-size:26px;margin-bottom:10px">📅</div><div style="font-weight:600;font-size:14px" data-en="Calendar">Calendario</div></div>
+      <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:22px 16px;text-align:center"><div style="font-size:26px;margin-bottom:10px">🗂️</div><div style="font-weight:600;font-size:14px">CRM / HubSpot</div></div>
+      <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:22px 16px;text-align:center"><div style="font-size:26px;margin-bottom:10px">📷</div><div style="font-weight:600;font-size:14px">Instagram</div></div>
+      <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:22px 16px;text-align:center"><div style="font-size:26px;margin-bottom:10px">✉️</div><div style="font-weight:600;font-size:14px">Email</div></div>
+      <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:22px 16px;text-align:center"><div style="font-size:26px;margin-bottom:10px">🔗</div><div style="font-weight:600;font-size:14px">Webhooks</div></div>
+      <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:22px 16px;text-align:center"><div style="font-size:26px;margin-bottom:10px">⚙️</div><div style="font-weight:600;font-size:14px">API REST</div></div>
+      <div style="background:linear-gradient(160deg,rgba(255,106,26,0.14),#101013);border:1px solid rgba(255,106,26,0.26);border-radius:16px;padding:22px 16px;text-align:center"><div style="font-size:26px;margin-bottom:10px">➕</div><div style="font-weight:600;font-size:14px;color:#FF8A3D" data-en="Custom">A medida</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRECIOS ===== -->
+<section id="precios" style="background:#0C0C0E;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);scroll-margin-top:72px">
+  <div style="max-width:1200px;margin:0 auto;padding:110px 32px">
+    <div style="text-align:center;margin-bottom:18px">
+      <div style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#FF8A3D">
+        <span style="width:18px;height:1px;background:#FF6A1A"></span><span data-en="Pricing">Precios</span><span style="width:18px;height:1px;background:#FF6A1A"></span>
+      </div>
+    </div>
+    <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(30px,4vw,48px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 14px;text-align:center" data-en="Built for small & growing teams.">Pensado para PYMES que quieren crecer.</h2>
+    <p style="font-size:17px;color:#9A9AA0;text-align:center;max-width:46ch;margin:0 auto 56px" data-en="Start small, scale when it pays off. No setup fees on annual plans.">Empieza en pequeño y escala cuando convenga. Sin costo de instalación en planes anuales.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch">
+      <!-- Starter -->
+      <div style="background:#101013;border:1px solid rgba(255,255,255,0.08);border-radius:22px;padding:34px;display:flex;flex-direction:column">
+        <div style="font-family:'Space Grotesk';font-weight:700;font-size:20px;margin-bottom:6px" data-en="Starter">Starter</div>
+        <div style="font-size:14px;color:#9A9AA0;margin-bottom:22px" data-en="For your first AI agent">Para tu primer agente de IA</div>
+        <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:24px"><span style="font-family:'Space Grotesk';font-weight:700;font-size:44px">$99</span><span style="color:#8E8E94;font-size:15px" data-en="/mo">/mes</span></div>
+        <a href="#contacto" style="text-decoration:none;text-align:center;border:1px solid rgba(255,255,255,0.18);color:#F2F0EC;font-weight:600;font-size:15px;padding:13px;border-radius:11px;margin-bottom:26px;transition:border-color .2s" style-hover="border-color:rgba(255,255,255,0.45)" data-en="Start now">Empezar</a>
+        <div style="display:flex;flex-direction:column;gap:13px;font-size:14.5px;color:#C9C9CE">
+          <div style="display:flex;gap:10px"><span style="color:#FF8A3D">✓</span><span data-en="1 AI agent">1 agente de IA</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#FF8A3D">✓</span><span data-en="500 calls / month">500 llamadas / mes</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#FF8A3D">✓</span><span data-en="WhatsApp + phone">WhatsApp + teléfono</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#FF8A3D">✓</span><span data-en="Basic scheduling">Agenda básica</span></div>
+        </div>
+      </div>
+      <!-- Growth -->
+      <div style="background:linear-gradient(170deg,rgba(255,106,26,0.16),#101013 55%);border:1px solid rgba(255,106,26,0.4);border-radius:22px;padding:34px;display:flex;flex-direction:column;position:relative;box-shadow:0 20px 60px rgba(255,77,0,0.14)">
+        <div style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#FF8A1E,#FF4D00);color:#0A0A0B;font-weight:700;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:6px 14px;border-radius:999px;font-family:'JetBrains Mono',monospace" data-en="Most popular">Más popular</div>
+        <div style="font-family:'Space Grotesk';font-weight:700;font-size:20px;margin-bottom:6px" data-en="Growth">Growth</div>
+        <div style="font-size:14px;color:#C7B3A2;margin-bottom:22px" data-en="For teams scaling up">Para equipos que escalan</div>
+        <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:24px"><span style="font-family:'Space Grotesk';font-weight:700;font-size:44px">$299</span><span style="color:#C7B3A2;font-size:15px" data-en="/mo">/mes</span></div>
+        <a href="#contacto" style="text-decoration:none;text-align:center;background:linear-gradient(135deg,#FF8A1E,#FF4D00);color:#0A0A0B;font-weight:700;font-size:15px;padding:13px;border-radius:11px;margin-bottom:26px;box-shadow:0 8px 26px rgba(255,77,0,0.32);transition:transform .15s" style-hover="transform:translateY(-2px)" data-en="Book a demo">Agendar demo</a>
+        <div style="display:flex;flex-direction:column;gap:13px;font-size:14.5px;color:#E4E0DA">
+          <div style="display:flex;gap:10px"><span style="color:#FF8A3D">✓</span><span data-en="3 AI agents">3 agentes de IA</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#FF8A3D">✓</span><span data-en="2,500 calls / month">2,500 llamadas / mes</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#FF8A3D">✓</span><span data-en="CRM integrations">Integraciones con CRM</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#FF8A3D">✓</span><span data-en="Bilingual (ES / EN)">Bilingüe (ES / EN)</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#FF8A3D">✓</span><span data-en="Analytics dashboard">Panel de analítica</span></div>
+        </div>
+      </div>
+      <!-- Scale -->
+      <div style="background:#101013;border:1px solid rgba(255,255,255,0.08);border-radius:22px;padding:34px;display:flex;flex-direction:column">
+        <div style="font-family:'Space Grotesk';font-weight:700;font-size:20px;margin-bottom:6px" data-en="Scale">Scale</div>
+        <div style="font-size:14px;color:#9A9AA0;margin-bottom:22px" data-en="For high call volume">Para alto volumen de llamadas</div>
+        <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:24px"><span style="font-family:'Space Grotesk';font-weight:700;font-size:44px" data-en="Custom">A medida</span></div>
+        <a href="#contacto" style="text-decoration:none;text-align:center;border:1px solid rgba(255,255,255,0.18);color:#F2F0EC;font-weight:600;font-size:15px;padding:13px;border-radius:11px;margin-bottom:26px;transition:border-color .2s" style-hover="border-color:rgba(255,255,255,0.45)" data-en="Talk to sales">Hablar con ventas</a>
+        <div style="display:flex;flex-direction:column;gap:13px;font-size:14.5px;color:#C9C9CE">
+          <div style="display:flex;gap:10px"><span style="color:#FF8A3D">✓</span><span data-en="Unlimited agents & calls">Agentes y llamadas ilimitados</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#FF8A3D">✓</span><span data-en="Custom voice & flows">Voz y flujos personalizados</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#FF8A3D">✓</span><span data-en="Full API access">Acceso completo a la API</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#FF8A3D">✓</span><span data-en="Dedicated support & SLA">Soporte dedicado y SLA</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIOS ===== -->
+<section style="max-width:1200px;margin:0 auto;padding:110px 32px">
+  <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(28px,3.4vw,44px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 50px;max-width:20ch" data-en="Teams that stopped letting the phone ring out.">Negocios que dejaron de perder llamadas.</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+    <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:30px">
+      <div style="color:#FF8A3D;font-size:20px;margin-bottom:16px">★★★★★</div>
+      <p style="font-size:16px;line-height:1.6;color:#D6D6DB;margin:0 0 22px" data-en="“We were missing half our reservation calls at peak. Now the agent takes them all — bookings are up and the staff can focus on the floor.”">"Perdíamos la mitad de las llamadas de reserva en hora pico. Ahora el agente las atiende todas — subieron las reservas y el equipo se concentra en el salón."</p>
+      <div style="display:flex;align-items:center;gap:12px"><div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#FF8A1E,#FF4D00)"></div><div><div style="font-weight:700;font-size:14px">Marina Ruiz</div><div style="font-size:13px;color:#8E8E94" data-en="Owner · La Parrilla">Dueña · La Parrilla</div></div></div>
+    </div>
+    <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:30px">
+      <div style="color:#FF8A3D;font-size:20px;margin-bottom:16px">★★★★★</div>
+      <p style="font-size:16px;line-height:1.6;color:#D6D6DB;margin:0 0 22px" data-en="“Our front desk drowned in scheduling calls. Black-sheep cut no-shows with automatic reminders and freed two people.”">"Nuestra recepción se ahogaba en llamadas para agendar. Black-sheep redujo las ausencias con recordatorios automáticos y liberó a dos personas."</p>
+      <div style="display:flex;align-items:center;gap:12px"><div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#FFB020,#FF6A1A)"></div><div><div style="font-weight:700;font-size:14px">Dr. Iván Mora</div><div style="font-size:13px;color:#8E8E94" data-en="Director · Clínica Norte">Director · Clínica Norte</div></div></div>
+    </div>
+    <div style="background:#101013;border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:30px">
+      <div style="color:#FF8A3D;font-size:20px;margin-bottom:16px">★★★★★</div>
+      <p style="font-size:16px;line-height:1.6;color:#D6D6DB;margin:0 0 22px" data-en="“It takes orders 24/7 and logs them straight into our CRM. We sell while we sleep, literally.”">"Levanta pedidos 24/7 y los registra directo en nuestro CRM. Vendemos mientras dormimos, literalmente."</p>
+      <div style="display:flex;align-items:center;gap:12px"><div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#FF6A1A,#FF4D00)"></div><div><div style="font-weight:700;font-size:14px">Carla Méndez</div><div style="font-size:13px;color:#8E8E94" data-en="Founder · DistriExpress">Fundadora · DistriExpress</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section style="background:#0C0C0E;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)">
+  <div style="max-width:840px;margin:0 auto;padding:110px 32px">
+    <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(28px,3.4vw,44px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 44px;text-align:center" data-en="Questions, answered.">Preguntas frecuentes.</h2>
+    <details class="fq" style="border-bottom:1px solid rgba(255,255,255,0.08);padding:22px 4px">
+      <summary style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;list-style:none;font-family:'Space Grotesk';font-weight:500;font-size:18px"><span data-en="Does the agent really sound human?">¿El agente realmente suena humano?</span><span class="fq-plus" style="color:#FF8A3D;font-size:24px;transition:transform .25s;flex-shrink:0;margin-left:16px">+</span></summary>
+      <p style="font-size:15.5px;color:#9A9AA0;line-height:1.6;margin:16px 0 0" data-en="Yes. It uses natural voice with low latency, handles interruptions and speaks Spanish and English fluently. Most callers don't realize it's AI.">Sí. Usa voz natural con baja latencia, maneja interrupciones y habla español e inglés con fluidez. La mayoría de quienes llaman no notan que es IA.</p>
+    </details>
+    <details class="fq" style="border-bottom:1px solid rgba(255,255,255,0.08);padding:22px 4px">
+      <summary style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;list-style:none;font-family:'Space Grotesk';font-weight:500;font-size:18px"><span data-en="How long does setup take?">¿Cuánto tarda la implementación?</span><span class="fq-plus" style="color:#FF8A3D;font-size:24px;transition:transform .25s;flex-shrink:0;margin-left:16px">+</span></summary>
+      <p style="font-size:15.5px;color:#9A9AA0;line-height:1.6;margin:16px 0 0" data-en="Most businesses go live in 3–7 days. We connect your phone line, WhatsApp and CRM, train the agent on your info and test it with you.">La mayoría queda operativa en 3 a 7 días. Conectamos tu línea, WhatsApp y CRM, entrenamos al agente con tu información y lo probamos contigo.</p>
+    </details>
+    <details class="fq" style="border-bottom:1px solid rgba(255,255,255,0.08);padding:22px 4px">
+      <summary style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;list-style:none;font-family:'Space Grotesk';font-weight:500;font-size:18px"><span data-en="What if the agent can't handle a call?">¿Qué pasa si el agente no puede resolver una llamada?</span><span class="fq-plus" style="color:#FF8A3D;font-size:24px;transition:transform .25s;flex-shrink:0;margin-left:16px">+</span></summary>
+      <p style="font-size:15.5px;color:#9A9AA0;line-height:1.6;margin:16px 0 0" data-en="It transfers to a human seamlessly with full context, or takes a message and schedules a callback — you set the rules.">Transfiere a un humano sin fricción y con todo el contexto, o toma el mensaje y agenda una devolución de llamada — tú defines las reglas.</p>
+    </details>
+    <details class="fq" style="border-bottom:1px solid rgba(255,255,255,0.08);padding:22px 4px">
+      <summary style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;list-style:none;font-family:'Space Grotesk';font-weight:500;font-size:18px"><span data-en="Is my customers' data safe?">¿Los datos de mis clientes están seguros?</span><span class="fq-plus" style="color:#FF8A3D;font-size:24px;transition:transform .25s;flex-shrink:0;margin-left:16px">+</span></summary>
+      <p style="font-size:15.5px;color:#9A9AA0;line-height:1.6;margin:16px 0 0" data-en="Encrypted in transit and at rest. We don't sell data and you can request deletion anytime. Compliance-ready for sensitive industries.">Cifrados en tránsito y en reposo. No vendemos datos y puedes solicitar su eliminación cuando quieras. Listo para cumplimiento en industrias sensibles.</p>
+    </details>
+    <details class="fq" style="border-bottom:1px solid rgba(255,255,255,0.08);padding:22px 4px">
+      <summary style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;list-style:none;font-family:'Space Grotesk';font-weight:500;font-size:18px"><span data-en="Do I need to change my phone number?">¿Tengo que cambiar mi número de teléfono?</span><span class="fq-plus" style="color:#FF8A3D;font-size:24px;transition:transform .25s;flex-shrink:0;margin-left:16px">+</span></summary>
+      <p style="font-size:15.5px;color:#9A9AA0;line-height:1.6;margin:16px 0 0" data-en="No. We keep your existing number and line — the agent simply answers on top of what you already have.">No. Mantenemos tu número y tu línea actuales — el agente simplemente contesta sobre lo que ya tienes.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section id="contacto" style="max-width:1200px;margin:0 auto;padding:110px 32px;scroll-margin-top:90px">
+  <div style="position:relative;overflow:hidden;background:linear-gradient(135deg,#FF8A1E,#FF4D00);border-radius:28px;padding:72px 48px;text-align:center">
+    <div style="position:absolute;top:-60px;right:-30px;font-size:200px;opacity:0.12;animation:floatY 8s ease-in-out infinite">🐑</div>
+    <div style="position:relative;z-index:1">
+      <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(32px,4.4vw,56px);line-height:1.02;letter-spacing:-0.02em;color:#0A0A0B;margin:0 0 18px;max-width:18ch;margin-left:auto;margin-right:auto" data-en="Put your call center on autopilot.">Pon tu call center en piloto automático.</h2>
+      <p style="font-size:19px;color:rgba(10,10,11,0.78);max-width:46ch;margin:0 auto 36px;line-height:1.5" data-en="Book a free 20-minute demo. Hear your own AI agent answer a real call.">Agenda una demo gratuita de 20 minutos. Escucha a tu propio agente de IA contestar una llamada real.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="mailto:hola@black-sheep.ai" style="text-decoration:none;background:#0A0A0B;color:#F2F0EC;font-weight:700;font-size:16px;padding:16px 30px;border-radius:12px;transition:transform .15s" style-hover="transform:translateY(-2px)" data-en="Book a free demo">Agendar demo gratis</a>
+        <a href="https://wa.me/" style="text-decoration:none;background:rgba(10,10,11,0.12);border:1px solid rgba(10,10,11,0.3);color:#0A0A0B;font-weight:600;font-size:16px;padding:16px 28px;border-radius:12px;display:inline-flex;align-items:center;gap:9px"><span>💬</span><span data-en="Chat on WhatsApp">Escríbenos por WhatsApp</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer style="border-top:1px solid rgba(255,255,255,0.07);background:#0A0A0B">
+  <div style="max-width:1200px;margin:0 auto;padding:56px 32px 40px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px">
+    <div>
+      <a href="#top" style="display:flex;align-items:center;gap:13px;text-decoration:none;margin-bottom:16px">
+        <span style="display:inline-flex;gap:4px;align-items:center">
+          <span style="width:8px;height:8px;border-radius:50%;background:#3A3A40"></span>
+          <span style="width:8px;height:8px;border-radius:50%;background:#3A3A40"></span>
+          <span style="width:10px;height:10px;border-radius:50%;background:#FF6A1A"></span>
+          <span style="width:8px;height:8px;border-radius:50%;background:#3A3A40"></span>
+        </span>
+        <span style="font-family:'Space Grotesk';font-weight:700;font-size:18px;color:#F2F0EC">black<span style="color:#FF6A1A">·</span>sheep</span>
+      </a>
+      <p style="font-size:14px;color:#7C7C82;line-height:1.55;max-width:30ch;margin:0" data-en="AI agents that answer, schedule and sell — so you never miss another call.">Agentes de IA que contestan, agendan y venden — para que nunca pierdas otra llamada.</p>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6E6E74;margin-bottom:16px" data-en="Product">Producto</div>
+      <div style="display:flex;flex-direction:column;gap:11px;font-size:14px">
+        <a href="#como" style="color:#A0A0A6;text-decoration:none" data-en="How it works">Cómo funciona</a>
+        <a href="#casos" style="color:#A0A0A6;text-decoration:none" data-en="Use cases">Casos</a>
+        <a href="#demo" style="color:#A0A0A6;text-decoration:none" data-en="Demo">Demo</a>
+        <a href="#precios" style="color:#A0A0A6;text-decoration:none" data-en="Pricing">Precios</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6E6E74;margin-bottom:16px" data-en="Industries">Industrias</div>
+      <div style="display:flex;flex-direction:column;gap:11px;font-size:14px;color:#A0A0A6">
+        <span data-en="Restaurants">Restaurantes</span>
+        <span data-en="Clinics">Clínicas</span>
+        <span data-en="Retail">Retail</span>
+        <span data-en="Services">Servicios</span>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6E6E74;margin-bottom:16px" data-en="Contact">Contacto</div>
+      <div style="display:flex;flex-direction:column;gap:11px;font-size:14px;color:#A0A0A6">
+        <a href="mailto:hola@black-sheep.ai" style="color:#A0A0A6;text-decoration:none">hola@black-sheep.ai</a>
+        <a href="https://wa.me/" style="color:#A0A0A6;text-decoration:none">WhatsApp</a>
+        <a href="#contacto" style="color:#FF8A3D;text-decoration:none" data-en="Book a demo">Agendar demo</a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;border-top:1px solid rgba(255,255,255,0.06);padding-top:24px">
+    <span style="font-size:13px;color:#6E6E74">© 2026 black·sheep — <span data-en="All rights reserved.">Todos los derechos reservados.</span></span>
+    <span style="font-size:13px;color:#6E6E74;font-family:'JetBrains Mono',monospace" data-en="Built with AI, for AI.">Hecho con IA, para IA.</span>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { lang: 'es', industry: 'rest' };
+
+  componentDidMount() {
+    this.applyLang(this.state.lang);
+    this.initCounters();
+    this.enableDesktopNav();
+  }
+
+  enableDesktopNav() {
+    // show nav links on wide screens
+    const apply = () => {
+      if (!this.root) return;
+      const el = this.root.querySelector('[data-desk]');
+      if (el) el.style.display = window.innerWidth > 880 ? 'flex' : 'none';
+    };
+    apply();
+    window.addEventListener('resize', apply);
+    this._navResize = apply;
+  }
+
+  applyLang(lang) {
+    if (!this.root) return;
+    this.root.querySelectorAll('[data-en]').forEach((el) => {
+      if (el.dataset.es === undefined) el.dataset.es = el.textContent;
+      el.textContent = lang === 'en' ? el.getAttribute('data-en') : el.dataset.es;
+    });
+    this.root.querySelectorAll('[data-lang-btn]').forEach((b) => {
+      const on = b.getAttribute('data-lang-btn') === lang;
+      b.style.color = on ? '#0A0A0B' : '#9A9AA0';
+      b.style.background = on ? '#FF6A1A' : 'transparent';
+    });
+    document.documentElement.lang = lang;
+  }
+
+  componentDidUpdate() {
+    // React re-renders reset static template text — re-apply the active language.
+    this.applyLang(this.state.lang);
+  }
+
+  setLang(l) {
+    this.setState({ lang: l });
+  }
+
+  initCounters() {
+    if (!this.root || !('IntersectionObserver' in window)) return;
+    const els = this.root.querySelectorAll('[data-count]');
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach((e) => {
+        if (e.isIntersecting) { this.run(e.target); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    els.forEach((el) => io.observe(el));
+  }
+
+  run(el) {
+    const target = parseFloat(el.getAttribute('data-count')) || 0;
+    const suf = el.getAttribute('data-suf') || '';
+    const dur = 1300, t0 = performance.now();
+    const tick = (t) => {
+      let p = Math.min(1, (t - t0) / dur);
+      p = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * p) + suf;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  renderVals() {
+    const ind = this.state.industry;
+    const tab = (on) => ({
+      display: 'inline-flex', alignItems: 'center', gap: '8px',
+      padding: '11px 18px', borderRadius: '999px', cursor: 'pointer',
+      fontWeight: 600, fontSize: '14.5px', userSelect: 'none',
+      border: '1px solid ' + (on ? 'rgba(255,106,26,0.5)' : 'rgba(255,255,255,0.10)'),
+      background: on ? 'rgba(255,106,26,0.12)' : 'transparent',
+      color: on ? '#FF8A3D' : '#C9C9CE', transition: 'all .2s',
+    });
+    return {
+      rootRef: (el) => { this.root = el; },
+      pickEs: () => this.setLang('es'),
+      pickEn: () => this.setLang('en'),
+      pickRest: () => this.setState({ industry: 'rest' }),
+      pickClinic: () => this.setState({ industry: 'clinic' }),
+      pickRetail: () => this.setState({ industry: 'retail' }),
+      pickServ: () => this.setState({ industry: 'serv' }),
+      isRest: ind === 'rest', isClinic: ind === 'clinic',
+      isRetail: ind === 'retail', isServ: ind === 'serv',
+      restTab: tab(ind === 'rest'), clinicTab: tab(ind === 'clinic'),
+      retailTab: tab(ind === 'retail'), servTab: tab(ind === 'serv'),
+    };
+  }
+}
+</script>
+</body>
+</html>

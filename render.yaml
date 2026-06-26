@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: blacksheep-call-center
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: ADMIN_TOKEN
+        generateValue: true
+    healthCheckPath: /api/health

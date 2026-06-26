@@ -1,0 +1,26 @@
+{
+  "name": "blacksheep-call-center",
+  "version": "1.0.0",
+  "description": "Landing web de BLACKSHEEP — agentes de IA para call center y atención por WhatsApp.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "blacksheep",
+    "ia",
+    "call-center",
+    "whatsapp",
+    "landing",
+    "express"
+  ],
+  "author": "BLACKSHEEP",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

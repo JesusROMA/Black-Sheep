@@ -1,0 +1,72 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5C842"></stop>
+      <stop offset="50%" style="stop-color:#D4A017"></stop>
+      <stop offset="100%" style="stop-color:#A07810"></stop>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"></feGaussianBlur>
+      <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+    </filter>
+  </defs>
+
+  
+  <rect width="400" height="400" fill="#0A0A0A"></rect>
+  
+  <radialGradient id="bg-glow" cx="50%" cy="45%" r="55%">
+    <stop offset="0%" style="stop-color:rgba(212,160,23,0.08)"></stop>
+    <stop offset="100%" style="stop-color:rgba(0,0,0,0)"></stop>
+  </radialGradient>
+  <rect width="400" height="400" fill="url(#bg-glow)"></rect>
+
+  
+  <polygon points="200,48 308,108 308,228 200,288 92,228 92,108" fill="none" stroke="url(#g)" stroke-width="1.5" opacity="0.2"></polygon>
+  <polygon points="200,68 288,118 288,218 200,268 112,218 112,118" fill="none" stroke="url(#g)" stroke-width="1" opacity="0.12"></polygon>
+
+  
+  
+  <circle cx="178" cy="208" r="52" fill="#111" stroke="url(#g)" stroke-width="2.5"></circle>
+  <circle cx="214" cy="192" r="46" fill="#111" stroke="url(#g)" stroke-width="2.5"></circle>
+  <circle cx="198" cy="168" r="42" fill="#111" stroke="url(#g)" stroke-width="2.5"></circle>
+  <circle cx="162" cy="176" r="40" fill="#111" stroke="url(#g)" stroke-width="2.5"></circle>
+  
+  <ellipse cx="190" cy="193" rx="58" ry="48" fill="#0d0d0d"></ellipse>
+
+  
+  <ellipse cx="240" cy="158" rx="32" ry="30" fill="#111" stroke="url(#g)" stroke-width="2.5"></ellipse>
+
+  
+  <ellipse cx="220" cy="133" rx="10" ry="17" fill="#0f0f0f" stroke="url(#g)" stroke-width="2" transform="rotate(-20,220,133)"></ellipse>
+
+  
+  <circle cx="250" cy="152" r="6" fill="url(#g)" filter="url(#glow)"></circle>
+  <circle cx="250" cy="152" r="2.5" fill="#0A0A0A"></circle>
+
+  
+  <path d="M 225,128 A 38,38 0 0,1 276,158" fill="none" stroke="url(#g)" stroke-width="2" stroke-dasharray="5,4" opacity="0.7" filter="url(#glow)"></path>
+  <circle cx="276" cy="158" r="5" fill="url(#g)" filter="url(#glow)"></circle>
+
+  
+  <rect x="152" y="252" width="12" height="36" rx="6" fill="url(#g)" opacity="0.75"></rect>
+  <rect x="170" y="256" width="12" height="32" rx="6" fill="url(#g)" opacity="0.75"></rect>
+  <rect x="196" y="252" width="12" height="36" rx="6" fill="url(#g)" opacity="0.75"></rect>
+  <rect x="214" y="256" width="12" height="32" rx="6" fill="url(#g)" opacity="0.75"></rect>
+
+  
+  <circle cx="170" cy="188" r="5" fill="url(#g)" filter="url(#glow)"></circle>
+  <circle cx="194" cy="178" r="5" fill="url(#g)" filter="url(#glow)"></circle>
+  <circle cx="216" cy="196" r="5" fill="url(#g)" filter="url(#glow)"></circle>
+  <circle cx="184" cy="210" r="5" fill="url(#g)" filter="url(#glow)"></circle>
+
+  
+  <line x1="170" y1="188" x2="194" y2="178" stroke="url(#g)" stroke-width="1.2" opacity="0.5"></line>
+  <line x1="194" y1="178" x2="216" y2="196" stroke="url(#g)" stroke-width="1.2" opacity="0.5"></line>
+  <line x1="170" y1="188" x2="184" y2="210" stroke="url(#g)" stroke-width="1.2" opacity="0.5"></line>
+  <line x1="216" y1="196" x2="184" y2="210" stroke="url(#g)" stroke-width="1.2" opacity="0.5"></line>
+
+  
+  <text x="200" y="336" font-family="&#39;Inter&#39;,&#39;Arial Black&#39;,sans-serif" font-weight="900" font-size="36" letter-spacing="6" fill="url(#g)" text-anchor="middle">BLACK</text>
+  <text x="200" y="368" font-family="&#39;Inter&#39;,&#39;Arial Black&#39;,sans-serif" font-weight="900" font-size="36" letter-spacing="6" fill="#F0F0F0" text-anchor="middle">SHEEP</text>
+  <rect x="80" y="342" width="240" height="1.2" fill="url(#g)" opacity="0.3"></rect>
+</svg>
