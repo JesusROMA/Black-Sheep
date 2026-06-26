@@ -4,7 +4,8 @@ DirectoryIndex index.html
 
 RewriteEngine On
 
-# Forzar HTTPS
+# Forzar HTTPS (compatible con el proxy SSL de IONOS, evita bucles)
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
